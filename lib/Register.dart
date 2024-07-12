@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Apis/api.dart';
 import 'package:hiremi_version_two/Controller/Register_controller.dart';
 import 'package:hiremi_version_two/Custom_Widget/Curved_Container.dart';
 import 'package:hiremi_version_two/Custom_Widget/Elevated_Button.dart';
 import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/Login.dart';
 import 'package:hiremi_version_two/Models/register_model.dart';
-import 'package:hiremi_version_two/api_services/user_services.dart';
 import 'package:intl/intl.dart';
 
 class Registers extends StatefulWidget {
-  const Registers({Key? key}) : super(key: key);
+  const Registers({super.key});
 
   @override
   _RegistersState createState() => _RegistersState();
@@ -22,7 +20,7 @@ class _RegistersState extends State<Registers> {
   String? _selectedState;
   DateTime? _selectedDate;
 
-  List<String> _states = ['State 1', 'State 2', 'State 3', 'State 4'];
+  final List<String> _states = ['State 1', 'State 2', 'State 3', 'State 4'];
 
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _fatherNameController = TextEditingController();
@@ -39,7 +37,7 @@ class _RegistersState extends State<Registers> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
-  RegistrationController _registrationController = RegistrationController();
+  final RegistrationController _registrationController = RegistrationController();
 
   void _handleGenderChange(Gender? value) {
     setState(() {
@@ -86,7 +84,7 @@ class _RegistersState extends State<Registers> {
             Center(
               child: RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: "Register to get started\n",
@@ -364,13 +362,13 @@ class _RegistersState extends State<Registers> {
                             // Registration successful, navigate to login or next screen
                             Navigator.pushReplacement(
                               context,
-                              SlidePageRoute(page: LogIn()),
+                              SlidePageRoute(page: const LogIn()),
                             );
                           }
                           else {
                             // Show error message to user
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                 content: Text('Registration failed. Please try again.'),
                                 duration: Duration(seconds: 3),
                               ),
@@ -396,7 +394,7 @@ class _RegistersState extends State<Registers> {
       padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
       child: Text(
         title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.black,
@@ -509,9 +507,9 @@ class _RegistersState extends State<Registers> {
               children: [
                 TextSpan(
                   text: label,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
-                TextSpan(
+                const TextSpan(
                   text: " *",
                   style: TextStyle(color: Colors.red),
                 ),
@@ -575,7 +573,7 @@ class _RegistersState extends State<Registers> {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.12),
           child: RichText(
-            text: TextSpan(
+            text: const TextSpan(
               children: [
                 TextSpan(
                   text: 'Gender',
@@ -598,19 +596,19 @@ class _RegistersState extends State<Registers> {
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Male'),
+              const Text('Male'),
               Radio(
                 value: Gender.Female,
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Female'),
+              const Text('Female'),
               Radio(
                 value: Gender.Other,
                 groupValue: _selectedGender,
                 onChanged: _handleGenderChange,
               ),
-              Text('Other'),
+              const Text('Other'),
             ],
           ),
         ),

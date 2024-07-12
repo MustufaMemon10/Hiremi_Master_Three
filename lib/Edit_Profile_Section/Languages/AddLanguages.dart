@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 
-import '../../screens/Profile_Screen/Profile_Screen.dart';
+import '../../Custom_Widget/drawer_child.dart';
+import '../../Notofication_screen.dart';
 import '../../Utils/AppSizes.dart';
 import '../../Utils/colors.dart';
-import '../../screens/Profile_Screen/sections/widgets_mustufa/appbar/AppBar.dart';
+import '../../Utils/validators/validation.dart';
+import '../../screens/Profile_Screen/Profile_Screen.dart';
 
 class AddLanguages extends StatefulWidget {
   const AddLanguages({super.key});
@@ -15,14 +17,33 @@ class AddLanguages extends StatefulWidget {
 
 class _AddLanguagesState extends State<AddLanguages> {
   TextEditingController languageController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         resizeToAvoidBottomInset: false,
-        appBar:  const SAppbar(
-          title: 'Edit Profile',
+        appBar: AppBar(
+          title: const Text(
+            'Edit Profile',
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (ctx) => const NotificationScreen()));
+                },
+                icon: const Icon(Icons.notifications))
+          ],
+        ),
+        drawer: const Drawer(
+          child: DrawerChild(),
         ),
         body: SingleChildScrollView(
             child: Padding(
@@ -32,18 +53,26 @@ class _AddLanguagesState extends State<AddLanguages> {
               bottom: kToolbarHeight,
               left: Sizes.responsiveDefaultSpace(context)),
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text(
-              'Languages',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: Sizes.responsiveMd(context),
-            ),
-                TextFieldWithTitle(controller: languageController, title: 'Add Language', hintText: 'eg: Hindi, English etc.'),
-         SizedBox(height: Sizes.responsiveMd(context) * 2,),
-                Center(child:
-                ElevatedButton(
+              Form(
+                key: formKey,
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                            const Text(
+                'Languages',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                height: Sizes.responsiveMd(context),
+                            ),
+                            TextFieldWithTitle(
+                  controller: languageController,
+                  title: 'Add Language',
+                  validator: (value)=>SValidator.validateEmptyText('Language', value),
+                  hintText: 'eg: Hindi, English etc.'),
+                            SizedBox(
+                height: Sizes.responsiveMd(context) * 2,
+                            ),
+                            Center(
+                child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       shape: RoundedRectangleBorder(
@@ -53,9 +82,11 @@ class _AddLanguagesState extends State<AddLanguages> {
                           horizontal: Sizes.responsiveMdSm(context)),
                     ),
                     onPressed: () {
-                      if (languageController.text.isNotEmpty) {
+                      if (formKey.currentState!.validate()) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) =>  ProfileScreen()));
+                            builder: (ctx) => ProfileScreen(
+                                  isVerified: true,
+                                )));
                       }
                     },
                     child: const Text(
@@ -66,8 +97,9 @@ class _AddLanguagesState extends State<AddLanguages> {
                         color: AppColors.white,
                       ),
                     )),
-                ),
-          ]),
+                            ),
+                          ]),
+              ),
         )));
   }
 }

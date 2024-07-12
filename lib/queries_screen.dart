@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class QueriesScreen extends StatefulWidget {
-  const QueriesScreen({Key? key, }) : super(key: key);
+  const QueriesScreen({super.key, });
 
   @override
   State<QueriesScreen> createState() => _QueriesScreenState();

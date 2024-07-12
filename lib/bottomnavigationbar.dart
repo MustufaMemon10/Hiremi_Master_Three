@@ -8,7 +8,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class NewNavbar extends StatefulWidget {
   final bool isV;
-  const NewNavbar({Key? key, required this.isV}) : super(key: key);
+  const NewNavbar({super.key, required this.isV});
 
   @override
   State<NewNavbar> createState() => _NewNavbarState();
@@ -26,7 +26,7 @@ class _NewNavbarState extends State<NewNavbar> {
       HomePage(isVerified: widget.isV),
       const AppliesScreen(),
       const QueriesScreen(),
-      ProfileScreen()
+      ProfileScreen(isVerified: false,)
     ];
   }
 
@@ -122,7 +122,6 @@ class _NewNavbarState extends State<NewNavbar> {
             radius: 39,
             lineWidth: 15,
             percent: 0.50,
-            
             progressColor: const Color(0xFFC1272D),
             backgroundColor: Colors.transparent,
             startAngle: 90,

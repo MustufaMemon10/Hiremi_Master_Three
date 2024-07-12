@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 
 class RoundedContainer extends StatelessWidget {
-  const RoundedContainer({Key? key, 
+  const RoundedContainer({super.key, 
     
     required this.child, required this.radius, required this.padding,this.border,  this.color ,
-  }) : super(key: key);
+  });
 
   final double radius;
   final EdgeInsets padding;

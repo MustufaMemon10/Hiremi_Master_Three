@@ -9,8 +9,6 @@ class BasicDetails extends StatelessWidget {
   const BasicDetails({super.key,
   });
 
-
-
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
@@ -60,11 +58,11 @@ class BasicDetails extends StatelessWidget {
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              BasicDetailsChild(icon: Icons.mail_outline, title: 'admin@gmail.com'),
+              const BasicDetailsChild(icon: Icons.mail_outline, title: 'admin@gmail.com'),
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              BasicDetailsChild(icon: Icons.call_outlined, title: '+9988774562'),
+              const BasicDetailsChild(icon: Icons.call_outlined, title: '+9988774562'),
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),

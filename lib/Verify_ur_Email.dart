@@ -385,7 +385,7 @@ import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/Custom_Widget/TextFeild.dart';
 
 class VerifyUrEmail extends StatefulWidget {
-  const VerifyUrEmail({Key? key}) : super(key: key);
+  const VerifyUrEmail({super.key});
 
   @override
   State<VerifyUrEmail> createState() => _VerifyUrEmailState();
@@ -415,12 +415,12 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
 
         Navigator.pushReplacement(
           context,
-          SlidePageRoute(page: CreateNewPassword()),
+          SlidePageRoute(page: const CreateNewPassword()),
         );
       } else {
         print(response.statusCode);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Invalid OTP. Please try again.')),
+          const SnackBar(content: Text('Invalid OTP. Please try again.')),
         );
       }
     } catch (e) {
@@ -429,7 +429,7 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
       });
       print(e);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred. Please try again later.')),
+        const SnackBar(content: Text('An error occurred. Please try again later.')),
       );
     }
   }
@@ -449,14 +449,14 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
                     height: MediaQuery.of(context).size.height * 0.25,
                   ),
                 ),
-                Text(
+                const Text(
                   "Verify Your Email Address",
                   style: TextStyle(
                     fontSize: 21.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text(
+                const Text(
                   "Hey, have You Received",
                   style: TextStyle(
                     fontSize: 21.0,
@@ -481,7 +481,7 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
                       Padding(
                         padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.09),
                         child: RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: "Enter One Time Password",
@@ -512,19 +512,19 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: "Please Enter your ",
                               style: TextStyle(color: Colors.black),
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: "six digit ",
                               style: TextStyle(color: Colors.blue),
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: "that you have received in your mailbox.",
                               style: TextStyle(color: Colors.black),
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: " ",
                               style: TextStyle(color: Colors.black),
                             ),
@@ -533,7 +533,7 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
                                 onPressed: () {
                                   print("Resend OTP clicked");
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Resend OTP",
                                   style: TextStyle(
                                     color: Colors.blue,
@@ -547,7 +547,7 @@ class _VerifyUrEmailState extends State<VerifyUrEmail> {
                       SizedBox(height: MediaQuery.of(context).size.height * 0.0285),
                       Center(
                         child: isLoading
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : CustomElevatedButton(
                           width: MediaQuery.of(context).size.width * 0.775,
                           height: MediaQuery.of(context).size.height * 0.0625,

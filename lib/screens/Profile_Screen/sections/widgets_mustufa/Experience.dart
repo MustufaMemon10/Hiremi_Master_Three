@@ -20,6 +20,7 @@ class Experience extends StatelessWidget {
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: Sizes.responsiveMd(context)),
           const ExperienceChild(
             title: 'Flutter UI Developer',
             company: 'CRTD Technologies',
@@ -40,9 +41,9 @@ class Experience extends StatelessWidget {
 }
 
 class ExperienceChild extends StatelessWidget {
-  const ExperienceChild({Key? key, 
+  const ExperienceChild({super.key, 
      required this.title, required this.jobType, required this.company, required this.timing,
-  }) : super(key: key);
+  });
 
   final String title,jobType,company,timing;
   @override

@@ -165,7 +165,7 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'Utils/colors.dart';
 
 class RoleDetailsFresher extends StatelessWidget {
-  const RoleDetailsFresher({Key? key}) : super(key: key);
+  const RoleDetailsFresher({super.key});
 
   @override
   Widget build(BuildContext context) {

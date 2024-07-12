@@ -5,7 +5,7 @@ import 'package:hiremi_version_two/InternshipDetailScreen.dart';
 
 class OpportunityCard extends StatelessWidget {
   const OpportunityCard({
-    Key? key,
+    super.key,
     required this.dp,
     required this.role,
     required this.company,
@@ -16,7 +16,7 @@ class OpportunityCard extends StatelessWidget {
     required this.type,
     required this.daysPosted,
     required this.isVerified,
-  }) : super(key: key);
+  });
 
   final Image dp;
   final String role;

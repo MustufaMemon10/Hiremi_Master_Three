@@ -5,7 +5,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 enum Gender { Male, Female, Other }
 
 class VerificationScreen extends StatefulWidget {
-  const VerificationScreen({Key? key}) : super(key: key);
+  const VerificationScreen({super.key});
 
   @override
   State<VerificationScreen> createState() => _VerificationScreenState();

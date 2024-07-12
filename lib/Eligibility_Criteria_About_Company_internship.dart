@@ -7,7 +7,7 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 
 
 class EligibilityCriteriaAboutCompany extends StatelessWidget {
-  const EligibilityCriteriaAboutCompany({Key? key}) : super(key: key);
+  const EligibilityCriteriaAboutCompany({super.key});
 
   @override
   Widget build(BuildContext context) {

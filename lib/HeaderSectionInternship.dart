@@ -5,7 +5,7 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
 class HeaderSection extends StatelessWidget {
-  const HeaderSection({Key? key}) : super(key: key);
+  const HeaderSection({super.key});
 
   @override
   Widget build(BuildContext context) {

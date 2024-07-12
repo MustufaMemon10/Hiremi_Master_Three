@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/verification_screens/verifiaction_screen2.dar
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class VerificationScreen1 extends StatefulWidget {
-  const VerificationScreen1({Key? key}) : super(key: key);
+  const VerificationScreen1({super.key});
 
   @override
   State<VerificationScreen1> createState() => _VerificationScreen1State();

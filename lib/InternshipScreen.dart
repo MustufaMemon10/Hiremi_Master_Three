@@ -6,7 +6,7 @@ import 'package:hiremi_version_two/Notofication_screen.dart';
 
 class InternshipsScreen extends StatelessWidget {
   //const InternshipsScreen({super.key, required this.isVerified});
-  const InternshipsScreen({Key? key, required this.isVerified}) : super(key: key);
+  const InternshipsScreen({super.key, required this.isVerified});
   final bool isVerified;
 
 

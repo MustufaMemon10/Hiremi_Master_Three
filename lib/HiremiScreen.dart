@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/FirstLandingPage.dart';
 
 class HiremiScreen extends StatelessWidget {
+  const HiremiScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
 
     double imageSize = MediaQuery.of(context).size.width * 0.6;
 
     // Delayed navigation logic
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => FirstLandingPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => const FirstLandingPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = 0.0;
             const end = 1.0;

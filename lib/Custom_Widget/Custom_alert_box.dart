@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/verify.dart';
 
 
 class CustomAlertbox extends StatefulWidget {
-  const CustomAlertbox({Key? key}) : super(key: key);
+  const CustomAlertbox({super.key});
 
   @override
   State<CustomAlertbox> createState() => _CustomAlertboxState();

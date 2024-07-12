@@ -10,7 +10,7 @@ class HeaderSectionFresher extends StatelessWidget {
   // const HeaderSectionFresher({
   //   super.key,
   // });
-  const HeaderSectionFresher({Key? key}) : super(key: key);
+  const HeaderSectionFresher({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(

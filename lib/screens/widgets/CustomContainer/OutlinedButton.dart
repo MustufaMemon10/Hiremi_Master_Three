@@ -4,11 +4,11 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
 class OutlinedContainer extends StatelessWidget {
-  const OutlinedContainer({super.key,  required this.child, required this.title,
+  const OutlinedContainer({super.key,  this.child, required this.title,
     this.showEdit = true,   this.onTap,
   });
 
-  final Widget child;
+  final Widget? child;
   final String title;
   final bool showEdit;
   final VoidCallback? onTap;
@@ -33,8 +33,7 @@ class OutlinedContainer extends StatelessWidget {
                   child: Image.asset('images/icons/img_3.png',height: 16,width: 16,)),
             ],
           ),
-          SizedBox(height: Sizes.responsiveMd(context)),
-          child
+          child ?? const SizedBox(),
         ],
       )
     );

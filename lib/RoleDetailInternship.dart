@@ -6,7 +6,7 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 
 
 class RoleDetails extends StatelessWidget {
-  const RoleDetails({Key? key}) : super(key: key);
+  const RoleDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -10,7 +10,7 @@ class CustomElevatedButton extends StatelessWidget {
   final TextStyle? textStyle;
 
   const CustomElevatedButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.color,
@@ -18,7 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
     this.height,
     this.borderRadius = 3.0,
     this.textStyle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CustomElevatedButton extends StatelessWidget {
       height: height ?? MediaQuery.of(context).size.height * 0.065, // Default height
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: color ?? Color(0xFFC1272D), // Default color
+          backgroundColor: color ?? const Color(0xFFC1272D), // Default color
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
@@ -35,7 +35,7 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: textStyle ?? TextStyle(color: Colors.white), // Default text style
+          style: textStyle ?? const TextStyle(color: Colors.white), // Default text style
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 
 class CustomAlert2 extends StatefulWidget {
-  const CustomAlert2({Key? key, }) : super(key: key);
+  const CustomAlert2({super.key, });
 
   @override
   State<CustomAlert2> createState() => _CustomAlert2State();

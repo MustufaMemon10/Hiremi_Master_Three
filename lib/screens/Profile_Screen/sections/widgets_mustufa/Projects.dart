@@ -21,22 +21,29 @@ class Projects extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ProjectsChild(
-            title: 'Responsive Personal Portfolio Website',
-            duration: 'Aug 2023 - Sept 2023',
-            description:
-                'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
-            link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
-          ),
-          SizedBox(
-            height: Sizes.responsiveDefaultSpace(context),
-          ),
-          const ProjectsChild(
-            title: 'Animated Personal Portfolio Website',
-            duration: 'Aug 2023 - Sept 2023',
-            description:
-                'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
-            link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
+          SizedBox(height: Sizes.responsiveMd(context)),
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const ProjectsChild(
+                title: 'Responsive Personal Portfolio Website',
+                duration: 'Aug 2023 - Sept 2023',
+                description:
+                    'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
+                link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
+              ),
+              SizedBox(
+                height: Sizes.responsiveDefaultSpace(context),
+              ),
+              const ProjectsChild(
+                title: 'Animated Personal Portfolio Website',
+                duration: 'Aug 2023 - Sept 2023',
+                description:
+                    'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
+                link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
+              ),
+            ],
           ),
         ],
       ),
@@ -45,12 +52,12 @@ class Projects extends StatelessWidget {
 }
 
 class ProjectsChild extends StatelessWidget {
-  const ProjectsChild({Key? key, 
+  const ProjectsChild({super.key, 
     required this.title,
     required this.duration,
     required this.description,
     required this.link,
-  }) : super(key: key);
+  });
 
   final String title, duration, description, link;
 

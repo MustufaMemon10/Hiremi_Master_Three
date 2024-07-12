@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
 class EligibilityCriteriaAboutCompanyFresher extends StatelessWidget {
-  const EligibilityCriteriaAboutCompanyFresher({Key? key}) : super(key: key);
+  const EligibilityCriteriaAboutCompanyFresher({super.key});
 
   @override
   Widget build(BuildContext context) {

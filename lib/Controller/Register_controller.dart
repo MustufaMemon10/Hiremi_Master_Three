@@ -20,7 +20,7 @@ class RegistrationController {
         return true; // Registration successful
       } else {
         // Handle errors based on response.statusCode
-        print( "${response.body}");
+        print( response.body);
         print('Error ${response.statusCode}: ${response.reasonPhrase}');
         return false; // Registration failed
       }

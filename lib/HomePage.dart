@@ -2,15 +2,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:hiremi_version_two/Custom_Widget/Circle_row.dart';
-import 'dart:ui'; // For BackdropFilter
-import 'package:hiremi_version_two/Custom_Widget/Container_with_curved_Edges.dart';
+// For BackdropFilter
 import 'package:hiremi_version_two/Custom_Widget/OppurtunityCard.dart';
-import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/Custom_Widget/Verifiedtrue.dart';
 import 'package:hiremi_version_two/Custom_Widget/banners.dart';
 import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
 import 'package:hiremi_version_two/Custom_Widget/verification_status.dart';
-import 'package:hiremi_version_two/Fresher_Jobs.dart';
 import 'package:hiremi_version_two/InternshipScreen.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/experienced_jobs.dart';
@@ -21,7 +18,7 @@ import 'package:hiremi_version_two/fresherJobs.dart';
 
 class HomePage extends StatefulWidget {
   final bool isVerified;
-  const HomePage({Key? key, required this.isVerified}) : super(key: key);
+  const HomePage({super.key, required this.isVerified});
 
   @override
   State<HomePage> createState() => _HomePageState();

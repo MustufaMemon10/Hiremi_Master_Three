@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppliesScreen extends StatefulWidget {
-  const AppliesScreen({Key? key}) : super(key: key);
+  const AppliesScreen({super.key});
 
   @override
   State<AppliesScreen> createState() => _AppliesScreenState();
@@ -62,15 +62,15 @@ class _AppliesScreenState extends State<AppliesScreen> {
                     // Handle button tap
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.orange, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),
@@ -101,15 +101,15 @@ class _AppliesScreenState extends State<AppliesScreen> {
                     // Handle button tap
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.red, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),
@@ -140,15 +140,15 @@ class _AppliesScreenState extends State<AppliesScreen> {
                     // Handle button tap
                   },
                   style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                     ),
-                    side: MaterialStateProperty.all<BorderSide>(
+                    side: WidgetStateProperty.all<BorderSide>(
                       const BorderSide(color: Colors.purpleAccent, width: 2),
                     ),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(vertical: 16, horizontal:20),
                     ),
                   ),

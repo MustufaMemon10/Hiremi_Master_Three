@@ -3,7 +3,7 @@ import 'package:hiremi_version_two/Custom_Widget/OppurtunityCard.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
 
 class FresherJobs extends StatelessWidget {
-  const FresherJobs({Key? key, required this.isVerified}) : super(key: key);
+  const FresherJobs({super.key, required this.isVerified});
   final bool isVerified;
 
   @override

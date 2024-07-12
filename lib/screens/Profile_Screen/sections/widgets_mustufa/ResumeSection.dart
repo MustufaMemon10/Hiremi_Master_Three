@@ -4,8 +4,8 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 
 
 class ResumeSection extends StatelessWidget {
-   ResumeSection({Key? key, 
-  }) : super(key: key);
+   ResumeSection({super.key, 
+  });
    final controller = TextEditingController();
   @override
   Widget build(BuildContext context) {

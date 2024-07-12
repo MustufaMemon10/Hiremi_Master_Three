@@ -15,7 +15,7 @@ class CurvedTextField extends StatefulWidget {
   final FormFieldValidator<String>? validator; // New parameter for validator
 
   const CurvedTextField({
-    Key? key,
+    super.key,
     this.hintText,
     this.borderRadius,
     this.semiCircleWidth,
@@ -27,7 +27,7 @@ class CurvedTextField extends StatefulWidget {
     this.controller, // Initialize the controller parameter
     this.onTap, // Initialize the onTap parameter
     this.validator, // Initialize the validator parameter
-  }) : super(key: key);
+  });
 
   @override
   _CurvedTextFieldState createState() => _CurvedTextFieldState();
@@ -58,7 +58,7 @@ class _CurvedTextFieldState extends State<CurvedTextField> {
           bottomRight: Radius.circular(calculatedBorderRadius),
         ),
         border: Border.all(
-          color: Color(0xFF808080), // Grey border color
+          color: const Color(0xFF808080), // Grey border color
           width: 1.0, // Border width
         ),
       ),
@@ -77,7 +77,7 @@ class _CurvedTextFieldState extends State<CurvedTextField> {
                     topLeft: Radius.circular(calculatedBorderRadius),
                     bottomLeft: Radius.circular(calculatedBorderRadius),
                   ),
-                  border: Border(
+                  border: const Border(
                     right: BorderSide(
                       color: Color(0xFF808080),
                       width: 1.0,

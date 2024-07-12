@@ -8,9 +8,9 @@ import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
 
 class KeySkills extends StatelessWidget {
-   KeySkills({super.key,
+   KeySkills({super.key, required this.skills,
   });
-  final List<String> skills = ['UI/UX', 'Frontend', 'Backend', 'Flutter', 'Javascript'];
+  final List<String> skills ;
 
 
 
@@ -21,26 +21,32 @@ class KeySkills extends StatelessWidget {
       onTap: () =>
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => AddKeySkills())),
-      child: Wrap(
-          runSpacing: 10,
-          spacing: Sizes.responsiveSm(context),
-          children: skills.map((skill) => RoundedContainer(
-                radius: 16,
-                padding: EdgeInsets.symmetric(
-                  horizontal: Sizes.responsiveHorizontalSpace(context),
-                  vertical: Sizes.responsiveVerticalSpace(context),
-                ),
-                border: Border.all(width: 0.5, color: AppColors.primary),
-                child: Text(
-                  skill,
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.primary,
-                  ),
-                ),
-              )
-          ).toList()
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: Sizes.responsiveMd(context)),
+          Wrap(
+              runSpacing: 10,
+              spacing: Sizes.responsiveSm(context),
+              children: skills.map((skill) => RoundedContainer(
+                    radius: 16,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Sizes.responsiveHorizontalSpace(context),
+                      vertical: Sizes.responsiveVerticalSpace(context),
+                    ),
+                    border: Border.all(width: 0.5, color: AppColors.primary),
+                    child: Text(
+                      skill,
+                      style: TextStyle(
+                        fontSize: 10.0,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  )
+              ).toList()
+          ),
+        ],
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 // ignore: camel_case_types
 class About_Us extends StatefulWidget {
-  const About_Us({Key? key, }) : super(key: key);
+  const About_Us({super.key, });
 
   @override
   State<About_Us> createState() => _About_UsState();
@@ -81,7 +81,7 @@ class _About_UsState extends State<About_Us> {
             ),
             const Text(
               'Hiremi is a platform for career and business growth, offering',
-              style: const TextStyle(
+              style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.5,
                   color: Colors.grey),

@@ -12,7 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'api_services/base_services.dart';
 
 class Forget_Your_Password extends StatefulWidget {
-  const Forget_Your_Password({Key? key}) : super(key: key);
+  const Forget_Your_Password({super.key});
 
   @override
   State<Forget_Your_Password> createState() => _Forget_Your_PasswordState();
@@ -42,7 +42,7 @@ class _Forget_Your_PasswordState extends State<Forget_Your_Password> {
         // Successful response, navigate to VerifyUrEmail screen
         Navigator.pushReplacement(
           context,
-          SlidePageRoute(page: VerifyUrEmail()),
+          SlidePageRoute(page: const VerifyUrEmail()),
         );
       } else {
         // Handle other status codes or errors
@@ -80,14 +80,14 @@ class _Forget_Your_PasswordState extends State<Forget_Your_Password> {
                     height: MediaQuery.of(context).size.height * 0.25,
                   ),
                 ),
-                Text(
+                const Text(
                   "Forget Your Password",
                   style: TextStyle(
                     fontSize: 21.0,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                Text(
+                const Text(
                   "No worries, it happens!",
                   style: TextStyle(
                     fontSize: 21.0,
@@ -118,7 +118,7 @@ class _Forget_Your_PasswordState extends State<Forget_Your_Password> {
                             right: MediaQuery.of(context).size.width * 0.09,
                           ),
                           child: RichText(
-                            text: TextSpan(
+                            text: const TextSpan(
                               children: [
                                 TextSpan(
                                   text: "Enter Email Address",
@@ -163,7 +163,7 @@ class _Forget_Your_PasswordState extends State<Forget_Your_Password> {
                         ),
                         RichText(
                           textAlign: TextAlign.center,
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text:
@@ -206,7 +206,7 @@ class _Forget_Your_PasswordState extends State<Forget_Your_Password> {
                                   await storeCSRFToken(csrfToken);
                                   Navigator.pushReplacement(
                                     context,
-                                    SlidePageRoute(page: VerifyUrEmail()),
+                                    SlidePageRoute(page: const VerifyUrEmail()),
                                   );
                                 }
                               }

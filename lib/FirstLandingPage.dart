@@ -4,7 +4,7 @@ import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/SeceondLandingpage.dart';
 
 class FirstLandingPage extends StatefulWidget {
-  const FirstLandingPage({Key? key}) : super(key: key);
+  const FirstLandingPage({super.key});
 
   @override
   State<FirstLandingPage> createState() => _FirstLandingPageState();
@@ -30,7 +30,7 @@ class _FirstLandingPageState extends State<FirstLandingPage> {
                  ),
                ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.095),
-                Text.rich(
+                const Text.rich(
                   TextSpan(
                     text: '   Nice to see you,\nWelcome to ',
                     style: TextStyle(
@@ -51,7 +51,7 @@ class _FirstLandingPageState extends State<FirstLandingPage> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                Text("Your path to the perfect hire starts here. Let's build a stronger team together with the best talent at your fingertips.",
+                const Text("Your path to the perfect hire starts here. Let's build a stronger team together with the best talent at your fingertips.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 12.0,
@@ -62,7 +62,7 @@ class _FirstLandingPageState extends State<FirstLandingPage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      SlidePageRoute(page: Seceondlandingpage()),
+                      SlidePageRoute(page: const Seceondlandingpage()),
                     );
                   },
                 ),

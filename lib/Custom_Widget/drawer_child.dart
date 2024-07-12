@@ -6,7 +6,7 @@ import 'package:hiremi_version_two/about_us.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class DrawerChild extends StatelessWidget {
-  const DrawerChild({Key? key}) : super(key: key);
+  const DrawerChild({super.key});
 
   @override
   Widget build(BuildContext context) {

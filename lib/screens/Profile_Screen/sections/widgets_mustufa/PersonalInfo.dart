@@ -17,40 +17,46 @@ class PersonalInfo extends StatelessWidget {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) =>  const AddPersonalDetails())),
       title: 'Personal Details',
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          PersonalInfoChild(
-            title: 'Gender',
-            subtitle: 'Male',
-          ),
-          PersonalInfoChild(
-            title: 'Marital Status',
-            subtitle: 'Single / Unmarried',
-          ),
-          PersonalInfoChild(
-            title: 'Date of Birth (DOB)',
-            subtitle: '29-10-2002',
-          ),
-          PersonalInfoChild(
-            title: 'Current Address',
-            subtitle: 'Sheetal Mega City, Phase - 03, Mandideep, 462046',
-          ),
-          PersonalInfoChild(
-            title: 'Permeant Address',
-            subtitle: 'Sheetal Mega City, Phase - 03, Mandideep, 462046',
-          ),
-          PersonalInfoChild(
-            title: 'Career Break',
-            subtitle: 'No',
-          ),
-          PersonalInfoChild(
-            title: 'Differently Abled',
-            subtitle: 'No',
-          ),
-          PersonalInfoChild(
-            title: 'Native Language',
-            subtitle: 'Hindi',
+          SizedBox(height: Sizes.responsiveMd(context)),
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              PersonalInfoChild(
+                title: 'Gender',
+                subtitle: 'Male',
+              ),
+              PersonalInfoChild(
+                title: 'Marital Status',
+                subtitle: 'Single / Unmarried',
+              ),
+              PersonalInfoChild(
+                title: 'Date of Birth (DOB)',
+                subtitle: '29-10-2002',
+              ),
+              PersonalInfoChild(
+                title: 'Current Address',
+                subtitle: 'Sheetal Mega City, Phase - 03, Mandideep, 462046',
+              ),
+              PersonalInfoChild(
+                title: 'Permeant Address',
+                subtitle: 'Sheetal Mega City, Phase - 03, Mandideep, 462046',
+              ),
+              PersonalInfoChild(
+                title: 'Career Break',
+                subtitle: 'No',
+              ),
+              PersonalInfoChild(
+                title: 'Differently Abled',
+                subtitle: 'No',
+              ),
+              PersonalInfoChild(
+                title: 'Native Language',
+                subtitle: 'Hindi',
+              ),
+            ],
           ),
         ],
       ),
@@ -59,10 +65,10 @@ class PersonalInfo extends StatelessWidget {
 }
 
 class PersonalInfoChild extends StatelessWidget {
-  const PersonalInfoChild({Key? key, 
+  const PersonalInfoChild({super.key, 
     required this.title,
     required this.subtitle,
-  }) : super(key: key);
+  });
 
   final String title, subtitle;
 

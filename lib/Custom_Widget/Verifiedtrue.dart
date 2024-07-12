@@ -5,10 +5,10 @@ class VerifiedProfileWidget extends StatelessWidget {
   final String appId;
 
   const VerifiedProfileWidget({
-    Key? key,
+    super.key,
     required this.name,
     required this.appId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

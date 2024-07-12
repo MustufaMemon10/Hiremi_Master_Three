@@ -3,6 +3,8 @@
   import 'HiremiScreen.dart';
 
   class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
     @override
     _SplashScreenState createState() => _SplashScreenState();
   }
@@ -17,7 +19,7 @@
       super.initState();
 
       // Wait for 2 seconds before starting the animation
-      Future.delayed(Duration(milliseconds: 1750), () {
+      Future.delayed(const Duration(milliseconds: 1750), () {
         _controller.forward();
       });
 
@@ -29,7 +31,7 @@
       _animation = Tween<double>(begin: 1.0, end: 300.0).animate(
         CurvedAnimation(
           parent: _controller,
-          curve: Interval(0.0, 0.75, curve: Curves.easeInOut),
+          curve: const Interval(0.0, 0.75, curve: Curves.easeInOut),
         ),
       )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
@@ -40,14 +42,14 @@
     }
 
     void _startTimer() {
-      Future.delayed(Duration(milliseconds: 350), () {
+      Future.delayed(const Duration(milliseconds: 350), () {
         Navigator.of(context).pushReplacement(_createRoute());
       });
     }
 
     Route _createRoute() {
       return PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => HiremiScreen(),
+        pageBuilder: (context, animation, secondaryAnimation) => const HiremiScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = 0.0;
           const end = 3.0;
@@ -71,7 +73,7 @@
     Widget build(BuildContext context) {
       double imageSize = _animation.value * MediaQuery.of(context).size.width * 0.6;
       return Scaffold(
-        backgroundColor: Color(0xFFC1272D), // Set the background color
+        backgroundColor: const Color(0xFFC1272D), // Set the background color
         body: Center(
           child: AnimatedBuilder(
             animation: _animation,

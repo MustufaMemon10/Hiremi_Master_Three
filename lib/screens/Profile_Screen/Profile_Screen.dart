@@ -15,12 +15,11 @@ import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustu
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Projects.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/ResumeSection.dart';
 
-
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({
-    super.key,
+    super.key, required this.isVerified,
   });
-
+  final bool isVerified;
   final List<String> skills = [
     'UI/UX',
     'Frontend',
@@ -45,6 +44,7 @@ class ProfileScreen extends StatelessWidget {
       'duration': '2019-2018 | Percentage: 84.02%',
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,14 +52,15 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Profile',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style:  TextStyle(
+              fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         centerTitle: true,
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (ctx) => const NotificationScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (ctx) => const NotificationScreen()));
               },
               icon: const Icon(Icons.notifications))
         ],
@@ -77,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ProfileStatusSection(),
+               ProfileStatusSection(isVerified: isVerified,),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
@@ -93,23 +94,20 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const BasicDetails(),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              const ProfileSummary(
-             ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-               KeySkills(
+              const BasicDetails(
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              Education(
-
+              const ProfileSummary(),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
               ),
+              KeySkills(skills: skills,),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              Education(education: educationDetails,),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),

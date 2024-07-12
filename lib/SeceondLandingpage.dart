@@ -31,17 +31,17 @@ class _SeceondlandingpageState extends State<Seceondlandingpage> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.095),
 
-                Text("Discover Exclusive", style: TextStyle(
+                const Text("Discover Exclusive", style: TextStyle(
                   fontSize: 28.0,
                   fontWeight: FontWeight.w500,
                 ),),
-                Text("Job Opportunities.", style: TextStyle(
+                const Text("Job Opportunities.", style: TextStyle(
                   fontSize: 28.0,
                   color:Color(0xFF34AD78),
                   fontWeight: FontWeight.w500,
                 ),),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                Text("Find and connect with top candidates who are looking for unique and exciting roles.",
+                const Text("Find and connect with top candidates who are looking for unique and exciting roles.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -52,7 +52,7 @@ class _SeceondlandingpageState extends State<Seceondlandingpage> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      SlidePageRoute(page: ThirdLandingPage()),
+                      SlidePageRoute(page: const ThirdLandingPage()),
                     );
                   },
                 ),

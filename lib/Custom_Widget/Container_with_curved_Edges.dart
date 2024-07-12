@@ -9,10 +9,10 @@ class ContainerWithCurvedEdges extends StatelessWidget {
 
 
   const ContainerWithCurvedEdges({
-    Key? key,
+    super.key,
     required this.heightFactor,
     required this.percentage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
             flex: 12,
             child: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
@@ -73,7 +73,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                           bottom: MediaQuery.of(context).size.height * 0.1, // 10% of screen height
                           left: MediaQuery.of(context).size.width * 0.20, // 10% of screen width
                         ),
-                        child: Row(
+                        child: const Row(
                           children: [
                             Text(
                               "Complete & Verify Your Profile",
@@ -91,7 +91,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                         child: Container(
                           width: indicatorSize,
                           height: indicatorSize,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white, // Make the background white
                             shape: BoxShape.circle,
                           ),
@@ -99,7 +99,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                             value: percentage / 100,
                             strokeWidth: 8.0,
                             backgroundColor: Colors.white, // Set the background color to white
-                            valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF34AD78)), // Set the progress bar color to #34AD78
+                            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF34AD78)), // Set the progress bar color to #34AD78
                           ),
                         ),
                       ),
@@ -109,7 +109,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                           "${percentage.toInt()}%",
                           style: TextStyle(
                             fontSize: screenSize.width * 0.05, // Responsive font size
-                            color: Color(0xFF34AD78),
+                            color: const Color(0xFF34AD78),
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -119,7 +119,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            ..._buildProgressIndicator(context,4 as int, percentage as double),
+                            ..._buildProgressIndicator(context,4, percentage),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.024,
                             )
@@ -136,7 +136,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
             flex: 8,
             child: Container(
               decoration: BoxDecoration(
-                color: Color(0xFFFFF9F9), // Replace white with #FFF9F9
+                color: const Color(0xFFFFF9F9), // Replace white with #FFF9F9
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(borderRadius - borderWidth),
                   bottomRight: Radius.circular(borderRadius - borderWidth),
@@ -174,11 +174,11 @@ class ContainerWithCurvedEdges extends StatelessWidget {
                           onPressed: () {
                             // Your onPressed logic here
                           },
-                          color: Color(0xFF34AD78), // Optional
+                          color: const Color(0xFF34AD78), // Optional
                           width:  screenSize.height * 0.13, // Optional
                           height: screenSize.height * 0.04, // Optional
                           borderRadius: 10.0, // Optional
-                          textStyle: TextStyle(color: Colors.white, fontSize: 10.7), // Optional
+                          textStyle: const TextStyle(color: Colors.white, fontSize: 10.7), // Optional
                         ),
 
                       ],
@@ -211,18 +211,18 @@ class ContainerWithCurvedEdges extends StatelessWidget {
           height:MediaQuery.of(context).size.height*0.35, // Adjust based on your design
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: i < filledSteps ? Color(0xFF34AD78) : Colors.white,
+            color: i < filledSteps ? const Color(0xFF34AD78) : Colors.white,
             border: Border.all(color: Colors.grey),
           ),
           child: Center(
             child: i == 0
-                ? Icon(Icons.check, color: i < filledSteps ?Colors.white :  Color(0xFFC1272D) , size: 15.0) // Tick icon
+                ? Icon(Icons.check, color: i < filledSteps ?Colors.white :  const Color(0xFFC1272D) , size: 15.0) // Tick icon
                 : i == 1
-                ? Icon(Icons.phone, color: i < filledSteps ? Colors.white:  Color(0xFFC1272D), size: 15.0) // Phone icon
+                ? Icon(Icons.phone, color: i < filledSteps ? Colors.white:  const Color(0xFFC1272D), size: 15.0) // Phone icon
                 : i == 2
-                ? Icon(Icons.school, color: i < filledSteps ? Colors.white :  Color(0xFFC1272D), size: 15.0) // Graduation cap icon
+                ? Icon(Icons.school, color: i < filledSteps ? Colors.white :  const Color(0xFFC1272D), size: 15.0) // Graduation cap icon
                 : i == 3
-                ? Icon(Icons.account_balance, color: i < filledSteps ? Colors.white:  Color(0xFFC1272D), size: 15.0) // Institution icon
+                ? Icon(Icons.account_balance, color: i < filledSteps ? Colors.white:  const Color(0xFFC1272D), size: 15.0) // Institution icon
                 : null,
           ),
         ),
@@ -232,7 +232,7 @@ class ContainerWithCurvedEdges extends StatelessWidget {
           Expanded(
             child: Container(
               height:MediaQuery.of(context).size.height*0.002, // Adjust based on your design
-              color: i < filledSteps - 1 ? Color(0xFF34AD78) : Colors.grey,
+              color: i < filledSteps - 1 ? const Color(0xFF34AD78) : Colors.grey,
             ),
           ),
         );

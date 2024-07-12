@@ -6,10 +6,17 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/widgets/CustomContainer/OutlinedButton.dart';
 
+class PersonalLinks extends StatefulWidget {
+  const PersonalLinks({
+    super.key,
+  });
 
-class PersonalLinks extends StatelessWidget {
-  const PersonalLinks({Key? key, 
-  }) : super(key: key);
+  @override
+  State<PersonalLinks> createState() => _PersonalLinksState();
+}
+
+class _PersonalLinksState extends State<PersonalLinks> {
+  TextEditingController personalLinks = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,58 +26,151 @@ class PersonalLinks extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PersonalLinksChild(
-            platform: 'LinkedIn',
-            link: 'https://www.linkedin.com/in/1harshpawar/',
-          ),
-          SizedBox(
-            height: Sizes.responsiveMd(context),
-          ),
-          const PersonalLinksChild(
-            platform: 'Github',
-            link: 'https://www.github.com/hyperdgx/',
-          ),
-          SizedBox(
-            height: Sizes.responsiveMd(context),
-          ),
-          const PersonalLinksChild(
-            platform: '',
-            link: '',
-          ),
-          SizedBox(
-            height: Sizes.responsiveMd(context),
-          ),
-          SizedBox(
-            height: Sizes.responsiveLg(context) * 1.06,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(Sizes.radiusXs),
+          SizedBox(height: Sizes.responsiveMd(context)),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const PersonalLinksChild(
+                platform: 'LinkedIn',
+                link: 'https://www.linkedin.com/in/1harshpawar/',
+              ),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              const PersonalLinksChild(
+                platform: 'Github',
+                link: 'https://www.github.com/hyperdgx/',
+              ),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: RoundedContainer(
+                        color: Colors.transparent,
+                        border:
+                            Border.all(width: 0.5, color: AppColors.secondaryText),
+                        radius: 2,
+                        padding: EdgeInsets.only(
+                            left: Sizes.responsiveSm(context) * 1.15,
+                            top: Sizes.responsiveSm(context) * 0.9,
+                            bottom: Sizes.responsiveSm(context) * 0.9),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_link,
+                                size: 9, color: Colors.black.withOpacity(.75)),
+                            SizedBox(
+                              width: Sizes.responsiveHorizontalSpace(context),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right: Sizes.responsiveSm(context)),
+                              child: Text('Link Title',
+                                  style: TextStyle(
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black.withOpacity(0.25),
+                                  )),
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    width: Sizes.responsiveSm(context),
+                  ),
+                  Expanded(
+                    flex: 7,
+                    child: SizedBox(
+                      height: Sizes.responsiveLg(context),
+                      child: TextField(
+                        controller: personalLinks,
+                        cursorColor: AppColors.black,
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontSize: 8.5,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.blue
+                        ),
+                        expands: false,
+                        cursorHeight: Sizes.responsiveMdSm(context),
+                        cursorWidth: Sizes.responsiveXxs(context) * 0.6,
+                        decoration:  InputDecoration(
+                          prefixIcon: const Icon(
+                            Icons.attach_file,
+                            size: 11,
+                          ),
+                          hintText: 'Paste Link',
+                          labelStyle:  const TextStyle(
+                            fontSize: 8.5,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          contentPadding: EdgeInsets.symmetric(horizontal: Sizes.responsiveXs(context)),
+                          alignLabelWithHint: true,
+                          hintStyle: const TextStyle(
+                            fontSize: 8.5,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.secondaryText,
+                              width: 0.5,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.secondaryText,
+                              width: 0.5,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: AppColors.secondaryText,
+                              width: 0.5,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    padding: EdgeInsets.symmetric(
-                        vertical: Sizes.responsiveVerticalSpace(context),
-                        horizontal: Sizes.responsiveMdSm(context))),
-                onPressed: () {},
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Text(
-                      'Add Links ',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium!
-                          .apply(color: AppColors.white),
-                    ),
-                    const Icon(
-                      Icons.arrow_forward_ios_sharp,
-                      size: 8,
-                      color: AppColors.white,
-                    )
-                  ],
-                )),
-          )
+                  )
+                ],
+              ),
+              SizedBox(
+                height: Sizes.responsiveMd(context),
+              ),
+              SizedBox(
+                height: Sizes.responsiveLg(context) * 1.06,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(Sizes.radiusXs),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            vertical: Sizes.responsiveVerticalSpace(context) * 2,
+                            horizontal: Sizes.responsiveMdSm(context))),
+                    onPressed: () {},
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Add Links ',
+                          style: TextStyle(fontSize: 8.5,fontWeight: FontWeight.w400,color: AppColors.white),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 8,
+                          color: AppColors.white,
+                        )
+                      ],
+                    )),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -78,11 +178,11 @@ class PersonalLinks extends StatelessWidget {
 }
 
 class PersonalLinksChild extends StatelessWidget {
-  const PersonalLinksChild({Key? key, 
-    
+  const PersonalLinksChild({
+    super.key,
     required this.platform,
     required this.link,
-  }) : super(key: key);
+  });
 
   final String platform, link;
 
@@ -108,12 +208,12 @@ class PersonalLinksChild extends StatelessWidget {
                       color: link.isNotEmpty
                           ? AppColors.white
                           : Colors.black.withOpacity(.75)),
-                   SizedBox(
+                  SizedBox(
                     width: Sizes.responsiveHorizontalSpace(context),
                   ),
                   Padding(
                     padding:
-                    EdgeInsets.only(right: Sizes.responsiveSm(context)),
+                        EdgeInsets.only(right: Sizes.responsiveSm(context)),
                     child: Text(platform.isNotEmpty ? platform : 'Link Title',
                         style: TextStyle(
                           fontSize: 8,

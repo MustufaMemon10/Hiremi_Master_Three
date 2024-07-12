@@ -5,9 +5,9 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({Key? key, 
-    required this.controller, required this.hintText, this.textInputType = TextInputType.text,  this.maxLines,  this.suffix, this.prefix,
-  }) : super(key: key);
+  const CustomTextField({super.key,
+    required this.controller, required this.hintText, this.textInputType = TextInputType.text,  this.maxLines,  this.suffix, this.prefix, this.validator, this.readOnly = false, this.onTap,
+  });
 
   final TextEditingController controller;
   final String hintText;
@@ -15,14 +15,19 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final Widget? suffix;
   final Widget? prefix;
-
+  final String? Function(String?)? validator;
+  final bool readOnly;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: validator,
       controller: controller,
+      onTap: onTap,
       cursorColor: AppColors.black,
       textAlign: TextAlign.start,
       maxLines: maxLines,
+      readOnly: readOnly,
       style: const TextStyle(
         fontSize: 12,
         fontWeight: FontWeight.w500,
@@ -41,7 +46,7 @@ class CustomTextField extends StatelessWidget {
         hintStyle: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w400,
-          color: AppColors.secondaryText,
+          color: AppColors.black.withOpacity(0.25),
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(3),
@@ -52,15 +57,29 @@ class CustomTextField extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(3),
-          borderSide: BorderSide(
-            color: AppColors.secondaryText,
+          borderSide: const BorderSide(
+            color: AppColors.black,
             width: 0.37,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(3),
-          borderSide: BorderSide(
-            color: AppColors.secondaryText,
+          borderSide: const BorderSide(
+            color: AppColors.black,
+            width: 0.37,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3),
+          borderSide: const BorderSide(
+            color: AppColors.black,
+            width: 0.37,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(3),
+          borderSide: const BorderSide(
+            color: AppColors.black,
             width: 0.37,
           ),
         ),

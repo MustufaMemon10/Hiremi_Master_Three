@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/verify.dart';
 
 class AdBanner extends StatelessWidget {
-  AdBanner({Key? key, required this.isVerified}) : super(key: key);
+  const AdBanner({super.key, required this.isVerified});
   final bool isVerified;
 
   @override

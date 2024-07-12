@@ -6,7 +6,7 @@ import 'package:hiremi_version_two/Custom_Widget/TextFeild.dart';
 import 'package:hiremi_version_two/Login.dart';
 
 class CreateNewPassword extends StatefulWidget {
-  const CreateNewPassword({Key? key}) : super(key: key);
+  const CreateNewPassword({super.key});
 
   @override
   State<CreateNewPassword> createState() => _CreateNewPasswordState();
@@ -27,8 +27,8 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                             height: MediaQuery.of(context).size.height * 0.25,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(0.0),
+                        const Padding(
+                          padding: EdgeInsets.all(0.0),
                           child: Text.rich(
                             TextSpan(
                               children: [
@@ -75,7 +75,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                               Padding(
                                 padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.611),
                                 child: RichText(
-                                  text: TextSpan(
+                                  text: const TextSpan(
                                     children: [
                                       TextSpan(
                                           text: "Password",
@@ -94,7 +94,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                               SizedBox(height: MediaQuery.of(context).size.height * 0.0205),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
-                                child: CurvedTextField(
+                                child: const CurvedTextField(
                                   hintText: "********",
                                   prefixIcon: Icons.lock,
                                   obscureText: true,
@@ -104,7 +104,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                               Padding(
                                 padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.411),
                                 child: RichText(
-                                  text: TextSpan(
+                                  text: const TextSpan(
                                     children: [
                                       TextSpan(
                                           text: "Confirm new Password",
@@ -123,7 +123,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                               SizedBox(height: MediaQuery.of(context).size.height * 0.0205),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
-                                child: CurvedTextField(
+                                child: const CurvedTextField(
                                   hintText: "********",
                                   prefixIcon: Icons.lock,
                                   obscureText: true,
@@ -132,7 +132,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                               SizedBox(height: MediaQuery.of(context).size.height * 0.0247),
                               RichText(
                                 textAlign: TextAlign.center,
-                                text: TextSpan(
+                                text: const TextSpan(
                                   children: [
                                     TextSpan(
                                       text: "Password must be ",
@@ -160,7 +160,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                       context,
-                                      SlidePageRoute(page: LogIn()),
+                                      SlidePageRoute(page: const LogIn()),
                                     );
                                   },
                                 ),

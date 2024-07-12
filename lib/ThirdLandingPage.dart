@@ -4,7 +4,7 @@ import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/Login.dart';
 
 class ThirdLandingPage extends StatelessWidget {
-  const ThirdLandingPage({Key? key}) : super(key: key);
+  const ThirdLandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +25,17 @@ class ThirdLandingPage extends StatelessWidget {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.095),
 
-                Text("Get Personalized ", style: TextStyle(
+                const Text("Get Personalized ", style: TextStyle(
                   fontSize: 28.0,
                   fontWeight: FontWeight.w500,
                 ),),
-                Text("Career Guidance.", style: TextStyle(
+                const Text("Career Guidance.", style: TextStyle(
                   fontSize: 28.0,
                   color:Color(0xFF34AD78),
                   fontWeight: FontWeight.w500,
                 ),),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                Text("Receive tailored advice and insights to help you make the best hiring decisions.",
+                const Text("Receive tailored advice and insights to help you make the best hiring decisions.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -46,7 +46,7 @@ class ThirdLandingPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      SlidePageRoute(page: LogIn()),
+                      SlidePageRoute(page: const LogIn()),
                     );
                   },
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatelessWidget {
-  const NotificationScreen({Key? key, }) : super(key: key);
+  const NotificationScreen({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class NotificationScreen extends StatelessWidget {
             SizedBox(
               height: screenHeight * 0.02,
             ),
-            Container(
+            SizedBox(
               width: screenWidth * 0.8,
               child: const Text(
                 'NNN: No New Notifications!, Please Explore\nHiremi applications for a while.',

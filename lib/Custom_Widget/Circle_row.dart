@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CircleRow extends StatelessWidget {
-  const CircleRow({Key? key, }) : super(key: key);
+  const CircleRow({super.key, });
 
   @override
   Widget build(BuildContext context) {

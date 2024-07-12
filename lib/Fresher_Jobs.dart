@@ -11,7 +11,7 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 
 
 class FresherJobsScreen extends StatefulWidget {
-  const FresherJobsScreen({Key? key}) : super(key: key);
+  const FresherJobsScreen({super.key});
 
   @override
   State<FresherJobsScreen> createState() => _FresherJobsScreenState();

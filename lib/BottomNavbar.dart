@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
 
 class NavBar extends StatelessWidget {
   final int pageIndex;
   final Function(int) onTap;
 
-  const NavBar({
+  const NavBar({super.key, 
 
     required this.pageIndex,
     required this.onTap,
@@ -22,10 +23,11 @@ class NavBar extends StatelessWidget {
       ),
       child: BottomAppBar(
         elevation: 0.0,
+          shape: const CircularNotchedRectangle(),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(
-            height: 60,
+            height: Sizes.responsiveXxl(context) *1.5,
             color: Colors.green,
             child: Row(
               children: [

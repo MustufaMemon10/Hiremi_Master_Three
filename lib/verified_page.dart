@@ -4,7 +4,7 @@ import 'package:hiremi_version_two/bottomnavigationbar.dart';
 
 
 class VerifiedPage extends StatelessWidget {
-  const VerifiedPage({Key? key, }) : super(key: key);
+  const VerifiedPage({super.key, });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class VerifiedPage extends StatelessWidget {
             Stack(
               alignment: Alignment.center,
               children: [
-                Container(
+                SizedBox(
                   height: screenHeight * 0.45,
                   child: Image.asset(
                     'images/confetti bg.png',

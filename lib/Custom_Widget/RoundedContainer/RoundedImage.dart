@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class RoundedImage extends StatelessWidget {
-  const RoundedImage({Key? key,  required this.image, required this.border}) : super(key: key);
+  const RoundedImage({super.key,  required this.image, required this.border});
 
   final String image;
   final Border border;
