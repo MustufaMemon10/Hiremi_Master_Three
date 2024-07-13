@@ -34,20 +34,32 @@ class _AddEducationState extends State<AddEducation> {
     'Doctorate',
   ];
 
-  List<String> listOfCourses = [
-    'Bachelor of Technology (B.Tech)',
-    'Bachelor of Engineering (B.E)',
-    'Master of Technology (M.Tech)',
-    'Master of Engineering (M.E)',
-    'Diploma in Engineering'
-    'Integrated M.Tech',
-    'Bachelor of Computer Applications (BCA)',
-    'Master of Computer Applications (MCA)',
-    'B.Sc IT',
-    'M.Sc IT',
-    'B.Sc CS',
-    'M.Sc CS',
-  ];
+  Map<String, List<String>> educationToCourses = {
+    'High School': ['Science', 'Commerce', 'Arts'],
+    'Intermediate': ['Science', 'Commerce', 'Arts'],
+    'Diploma': ['Diploma in Engineering', 'Diploma in Computer Science'],
+    'Bachelor': [
+      'Bachelor of Technology (B.Tech)',
+      'Bachelor of Engineering (B.E)',
+      'Bachelor of Computer Applications (BCA)',
+      'B.Sc IT',
+      'B.Sc CS',
+    ],
+    'Master': [
+      'Master of Technology (M.Tech)',
+      'Master of Engineering (M.E)',
+      'Master of Computer Applications (MCA)',
+      'M.Sc IT',
+      'M.Sc CS',
+    ],
+    'Doctorate': [
+      'PhD in Technology',
+      'PhD in Engineering',
+      'PhD in Computer Science'
+    ],
+  };
+
+  List<String> listOfCourses = [];
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +111,12 @@ class _AddEducationState extends State<AddEducation> {
                 dropdownItems: listOfEducationLevels,
                 validator: (value) =>
                     SValidator.validateEmptyText('Education', value),
+                onChanged: (newValue) {
+                  setState(() {
+                    listOfCourses = educationToCourses[newValue!] ?? [];
+                    courseController.clear();
+                  });
+                },
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
@@ -110,7 +128,7 @@ class _AddEducationState extends State<AddEducation> {
                 controller: courseController,
                 dropdownItems: listOfCourses,
                 validator: (value) =>
-                    SValidator.validateEmptyText('Education', value),
+                    SValidator.validateEmptyText('Course', value),
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
@@ -248,6 +266,7 @@ class _AddEducationState extends State<AddEducation> {
     TextEditingController? controller,
     String? Function(String?)? validator,
     VoidCallback? onTap,
+    void Function(String?)? onChanged,
     TextInputType? keyboardType,
   }) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -256,17 +275,24 @@ class _AddEducationState extends State<AddEducation> {
           children: [
             TextSpan(
               text: label,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500,color: AppColors.black),
+              style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black),
             ),
-             TextSpan(
+            TextSpan(
               text: " *",
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500,color: AppColors.primary),
+              style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.primary),
             ),
           ],
         ),
       ),
       SizedBox(height: MediaQuery.of(context).size.height * 0.0185),
       DropdownButtonFormField<String>(
+        dropdownColor: Colors.white,
         style: const TextStyle(
             fontSize: 12, fontWeight: FontWeight.w500, color: AppColors.black),
         decoration: InputDecoration(
@@ -306,11 +332,7 @@ class _AddEducationState extends State<AddEducation> {
         ),
         value: controller?.text.isNotEmpty == true ? controller?.text : null,
         hint: Text(hintText),
-        onChanged: (String? newValue) {
-          setState(() {
-            controller?.text = newValue!;
-          });
-        },
+        onChanged: onChanged,
         items: dropdownItems!.map((String item) {
           return DropdownMenuItem<String>(
             value: item,

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/Key%20Skills/AddKeySkills.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/Personal%20Details/AddPersonalDetails.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/ProfileSummary/ProfileSummary.dart';
+import 'package:hiremi_version_two/Edit_Profile_Section/Projects/AddProjects.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
@@ -15,35 +20,44 @@ import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustu
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Projects.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/ResumeSection.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({
+import '../../Edit_Profile_Section/Education/AddEducation.dart';
+import '../../Edit_Profile_Section/Languages/AddLanguages.dart';
+
+class ProfileScreen extends StatefulWidget {
+   ProfileScreen({
     super.key, required this.isVerified,
+    this.languages,
+    this.skills,
+    this.educationDetails,
   });
-  final bool isVerified;
-  final List<String> skills = [
-    'UI/UX',
-    'Frontend',
-    'Backend',
-    'Flutter',
-    'Javascript'
-  ];
-  final List<Map<String, String>> educationDetails = [
-    {
-      'course': 'B.Tech, CSE',
-      'place': 'Bhopal, Madhya Pradesh',
-      'duration': '2021-2025 | Percentage: 70.00%',
-    },
-    {
-      'course': '12th, Math’s Stream',
-      'place': 'Bhopal, Madhya Pradesh',
-      'duration': '2021-2020 | Percentage: 84.00%',
-    },
-    {
-      'course': '10th, All Subjects',
-      'place': 'Bhopal, Madhya Pradesh',
-      'duration': '2019-2018 | Percentage: 84.02%',
-    },
-  ];
+  bool isVerified;
+  List<String>? languages;
+  List<String>? skills;
+  List<Map<String, String>>? educationDetails;
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+
+  // final List<Map<String, String>> educationDetails = [
+  //   {
+  //     'course': 'B.Tech, CSE',
+  //     'place': 'Bhopal, Madhya Pradesh',
+  //     'duration': '2021-2025 | Percentage: 70.00%',
+  //   },
+  //   {
+  //     'course': '12th, Math’s Stream',
+  //     'place': 'Bhopal, Madhya Pradesh',
+  //     'duration': '2021-2020 | Percentage: 84.00%',
+  //   },
+  //   {
+  //     'course': '10th, All Subjects',
+  //     'place': 'Bhopal, Madhya Pradesh',
+  //     'duration': '2019-2018 | Percentage: 84.02%',
+  //   },
+  // ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               ProfileStatusSection(isVerified: isVerified,),
+               ProfileStatusSection(isVerified: widget.isVerified,),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
@@ -99,27 +113,50 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const ProfileSummary(),
+               ProfileSummary(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const AddProfileSummary(
+                ))),
+              ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              KeySkills(skills: skills,),
+              KeySkills(skills: widget.skills ?? [],
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const AddKeySkills(
+                ))),
+              ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              Education(education: educationDetails,),
+              Education(education: widget.educationDetails ?? [],
+                onTap: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const AddEducation(
+                ))),
+              ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const Experience(),
+               Experience(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const AddExperience(
+                ))),
+              ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const Projects(),
+               Projects(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => const AddProjects(
+                ))),
+              ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const PersonalInfo(),
+                PersonalInfo(
+                  onTap: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const AddPersonalDetails(
+                  ))),                ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
@@ -127,11 +164,23 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
-              const Languages()
+               Languages(
+                 onTap:() => Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => AddLanguages(languages: widget.languages,))),
+                languages: widget.languages,
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    print('Languages ARE:${widget.languages}');
+    print(widget.skills);
+    print(widget.educationDetails);
   }
 }

@@ -37,7 +37,7 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      lastDate: DateTime.now(),
     );
 
     if (selectedDate != null) {
@@ -455,7 +455,9 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                                   differentlyAbled.isNotEmpty
                               ) {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) => const AddLanguages()));
+                                    builder: (ctx) =>  AddLanguages(
+                                      languages: const [],
+                                    )));
                               }
                             },
                             child: Row(

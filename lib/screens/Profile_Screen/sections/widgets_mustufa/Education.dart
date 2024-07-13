@@ -6,24 +6,25 @@ import 'package:hiremi_version_two/screens/widgets/CustomContainer/OutlinedButto
 
 class Education extends StatelessWidget {
   const Education({
-    super.key, required this.education,
+    super.key, this.education, this.onTap,
   });
 
-  final List<Map<String, String>> education;
+  final List<Map<String, String>>? education;
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => AddEducation())),
+      onTap: onTap,
       title: 'Education',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if(education!.isNotEmpty)
           SizedBox(height: Sizes.responsiveMd(context)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: education
+            children: (education ?? [])
                 .map((edu) => EducationChild(
                     course: edu['course']!,
                     place: edu['place']!,

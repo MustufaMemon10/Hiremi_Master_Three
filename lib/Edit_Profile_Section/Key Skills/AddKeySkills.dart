@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Education/AddEducation.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
-import 'package:hiremi_version_two/Utils/validators/validation.dart';
-import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
-import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/appbar/AppBar.dart';
+import 'package:hiremi_version_two/Utils/validators/validation.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
-import '../widgets/CustomTextField.dart';
 
 class AddKeySkills extends StatefulWidget {
-   const AddKeySkills({super.key, });
+  const AddKeySkills({
+    super.key,
+  });
 
   @override
   State<AddKeySkills> createState() => _AddKeySkillsState();
 }
 
 class _AddKeySkillsState extends State<AddKeySkills> {
-   final skillController = TextEditingController();
-   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final skillController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  List<String> keySkills = [];
+
+  void addSkill() {
+    if (skillController.text.isNotEmpty) {
+      setState(() {
+        keySkills.add(skillController.text);
+        skillController.clear();
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +39,7 @@ class _AddKeySkillsState extends State<AddKeySkills> {
       appBar: AppBar(
         title: const Text(
           'Edit Profile',
-          style:  TextStyle(
+          style: TextStyle(
               fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         centerTitle: true,
@@ -51,110 +61,130 @@ class _AddKeySkillsState extends State<AddKeySkills> {
             right: Sizes.responsiveDefaultSpace(context),
             bottom: kToolbarHeight,
             left: Sizes.responsiveDefaultSpace(context)),
-        child:
-            Form(
-              key: formKey,
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                const Text(
-                  'Key Skills',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+        child: Form(
+          key: formKey,
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text(
+              'Key Skills',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+            SizedBox(
+              height: Sizes.responsiveMd(context),
+            ),
+            TextFieldWithTitle(
+              controller: skillController,
+              title: 'Key Skills',
+              hintText: 'Eg: Flutter Developer',
+              suffix: GestureDetector(
+                onTap: addSkill,
+                child: Icon(
+                  Icons.add,
+                  size: 20,
+                  color: AppColors.black.withOpacity(0.5),
                 ),
-                SizedBox(
-                  height: Sizes.responsiveMd(context),
-                ),
-                TextFieldWithTitle(controller: skillController, title: 'Key Skills', hintText: 'Eg: Flutter Developer',
-                    suffix: Icon(
-                          Icons.open_with,
-                          size: 15,
-                          color: AppColors.secondaryText,
-                        ),
-                  validator: (value)=> SValidator.validateEmptyText('Skills', value),
-                ),
-                SizedBox(
-                  height: Sizes.responsiveXs(context),
-                ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Word Limit is 100-250 words.',
-                    style: TextStyle(
-                      fontSize: 8,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.secondaryText,
+              ),
+              validator: (value) =>
+                  SValidator.validateEmptyText('Skills', value),
+            ),
+            SizedBox(
+              height: Sizes.responsiveXs(context),
+            ),
+            Wrap(
+              spacing: 8.0,
+              children: keySkills.map((skill) {
+                return Chip(
+                  shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 0.37, color: AppColors.primary),
+                      borderRadius: BorderRadius.circular(50)),
+                  backgroundColor: AppColors.white,
+                  deleteIconColor: AppColors.primary,
+                  label: Text(skill),
+                  labelStyle: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.black),
+                  onDeleted: () {
+                    setState(() {
+                      keySkills.remove(skill);
+                    });
+                  },
+                );
+              }).toList(),
+            ),
+            SizedBox(
+              height: Sizes.responsiveMd(context),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                      padding: EdgeInsets.symmetric(
+                          vertical: Sizes.responsiveHorizontalSpace(context),
+                          horizontal: Sizes.responsiveMdSm(context)),
                     ),
-                  ),
-                ),
-                SizedBox(
-                  height: Sizes.responsiveMd(context),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(Sizes.radiusSm)),
-                          padding: EdgeInsets.symmetric(
-                              vertical: Sizes.responsiveHorizontalSpace(context),
-                              horizontal: Sizes.responsiveMdSm(context)),
-                        ),
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>  ProfileScreen(isVerified: false,)));
-                          }
-                        },
-                        child: const Text(
-                          'Save',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ProfileScreen(
+                                  isVerified: false,
+                                )));
+                      }
+                    },
+                    child: const Text(
+                      'Save',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.white,
+                      ),
+                    )),
+                OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(color: AppColors.primary, width: 0.5),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                      padding: EdgeInsets.symmetric(
+                          vertical: Sizes.responsiveSm(context),
+                          horizontal: Sizes.responsiveMdSm(context)),
+                    ),
+                    onPressed: () {
+                      if (!formKey.currentState!.validate() ||
+                          keySkills.isNotEmpty) {
+                        return;
+                      }
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AddEducation()));
+                    },
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Save & Next',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: AppColors.white,
+                            color: AppColors.primary,
                           ),
-                        )),
-                    OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                          side:   BorderSide(color: AppColors.primary,width: 0.5),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(Sizes.radiusSm)),
-                          padding: EdgeInsets.symmetric(
-                              vertical: Sizes.responsiveSm(context),
-                              horizontal: Sizes.responsiveMdSm(context)),
                         ),
-                        onPressed: () {
-                          if(formKey.currentState!.validate()){
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>   AddEducation()));
-                          }
-                        },
-                        child:  Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              'Save & Next',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.primary,
-                              ),
-                            ),
-                            SizedBox(
-                              width: Sizes.responsiveXs(context),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios_sharp,
-                              size: 11,
-                              color: AppColors.primary,
-                            )
-                          ],
-                        )),
-                  ],
-                )
-
+                        SizedBox(
+                          width: Sizes.responsiveXs(context),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_sharp,
+                          size: 11,
+                          color: AppColors.primary,
+                        )
+                      ],
+                    )),
               ],
-              ),
-            ),
+            )
+          ]),
+        ),
       ),
     );
   }

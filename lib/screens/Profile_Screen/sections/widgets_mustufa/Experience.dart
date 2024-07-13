@@ -6,16 +6,15 @@ import 'package:hiremi_version_two/screens/widgets/CustomContainer/OutlinedButto
 
 
 class Experience extends StatelessWidget {
-  const Experience({super.key,
+  const Experience({super.key, this.onTap,
   });
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return  OutlinedContainer(
       title: 'Experience',
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>  const AddExperience())),
+      onTap: onTap,
       child:
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,

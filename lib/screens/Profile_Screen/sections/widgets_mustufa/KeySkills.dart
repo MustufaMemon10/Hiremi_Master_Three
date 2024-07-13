@@ -8,27 +8,26 @@ import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
 
 class KeySkills extends StatelessWidget {
-   KeySkills({super.key, required this.skills,
+   const KeySkills({super.key, this.skills, this.onTap,
   });
-  final List<String> skills ;
+  final List<String>? skills ;
 
-
+   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
       title: 'Key Skills',
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AddKeySkills())),
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if(skills!.isNotEmpty)
           SizedBox(height: Sizes.responsiveMd(context)),
           Wrap(
               runSpacing: 10,
               spacing: Sizes.responsiveSm(context),
-              children: skills.map((skill) => RoundedContainer(
+              children: (skills?? []).map((skill) => RoundedContainer(
                     radius: 16,
                     padding: EdgeInsets.symmetric(
                       horizontal: Sizes.responsiveHorizontalSpace(context),

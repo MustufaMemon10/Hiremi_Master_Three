@@ -7,15 +7,14 @@ import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
 
 class ProfileSummary extends StatelessWidget {
-  const ProfileSummary({super.key,
+  const ProfileSummary({super.key, this.onTap,
   });
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return  OutlinedContainer(
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>   AddProfileSummary())),
+      onTap: onTap,
       title: 'Profile Summary',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

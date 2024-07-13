@@ -8,15 +8,14 @@ import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
 
 class Projects extends StatelessWidget {
-  const Projects({super.key,
+  const Projects({super.key, this.onTap,
   });
 
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>  const AddProjects())),
+      onTap: onTap,
       title: 'Projects',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
