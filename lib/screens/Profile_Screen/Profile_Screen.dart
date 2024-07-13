@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Key%20Skills/AddKeySkills.dart';
@@ -8,6 +9,7 @@ import 'package:hiremi_version_two/Edit_Profile_Section/Projects/AddProjects.dar
 import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/BasicDetails.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Education.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Experience.dart';
@@ -20,43 +22,16 @@ import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustu
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Projects.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/ResumeSection.dart';
 
+import '../../Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
 import '../../Edit_Profile_Section/Education/AddEducation.dart';
 import '../../Edit_Profile_Section/Languages/AddLanguages.dart';
 
-class ProfileScreen extends StatefulWidget {
-   ProfileScreen({
-    super.key, required this.isVerified,
-    this.languages,
-    this.skills,
-    this.educationDetails,
+class ProfileScreen extends StatelessWidget {
+  ProfileScreen({
+    super.key,
   });
-  bool isVerified;
-  List<String>? languages;
-  List<String>? skills;
-  List<Map<String, String>>? educationDetails;
-  @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
 
-class _ProfileScreenState extends State<ProfileScreen> {
-
-  // final List<Map<String, String>> educationDetails = [
-  //   {
-  //     'course': 'B.Tech, CSE',
-  //     'place': 'Bhopal, Madhya Pradesh',
-  //     'duration': '2021-2025 | Percentage: 70.00%',
-  //   },
-  //   {
-  //     'course': '12th, Math’s Stream',
-  //     'place': 'Bhopal, Madhya Pradesh',
-  //     'duration': '2021-2020 | Percentage: 84.00%',
-  //   },
-  //   {
-  //     'course': '10th, All Subjects',
-  //     'place': 'Bhopal, Madhya Pradesh',
-  //     'duration': '2019-2018 | Percentage: 84.02%',
-  //   },
-  // ];
+  final controller = Get.put(ProfileController());
 
 
   @override
@@ -66,7 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: const Text(
           'Profile',
-          style:  TextStyle(
+          style: TextStyle(
               fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         centerTitle: true,
@@ -89,98 +64,112 @@ class _ProfileScreenState extends State<ProfileScreen> {
               right: Sizes.responsiveDefaultSpace(context),
               top: Sizes.responsiveDefaultSpace(context),
               bottom: Sizes.responsiveXxl(context) * 2.5),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-               ProfileStatusSection(isVerified: widget.isVerified,),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              Divider(
-                height: 0.25,
-                thickness: 0.5,
-                color: AppColors.secondaryText,
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              ResumeSection(),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              const BasicDetails(
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-               ProfileSummary(
-                onTap: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const AddProfileSummary(
-                ))),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              KeySkills(skills: widget.skills ?? [],
-                onTap: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const AddKeySkills(
-                ))),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              Education(education: widget.educationDetails ?? [],
-                onTap: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const AddEducation(
-                ))),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-               Experience(
-                onTap: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const AddExperience(
-                ))),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-               Projects(
-                onTap: () => Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => const AddProjects(
-                ))),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
+          child: Obx(
+            () => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ProfileStatusSection(
+                  isVerified: controller.isVerified.value,
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                Divider(
+                  height: 0.25,
+                  thickness: 0.5,
+                  color: AppColors.secondaryText,
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                ResumeSection(
+                  resumeLink: controller.resumeLink.value,
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                BasicDetails(
+                  lookingFor: controller.lookingFor.value,
+                  email: controller.email.value,
+                  city: controller.city.value,
+                  phoneNumber: controller.phoneNumber.value,
+                  state: controller.state.value,
+                  whatsappNumber: controller.whatsappNumber.value,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddBasicDetails())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                ProfileSummary(
+                  summary: controller.summary.value,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddProfileSummary())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                KeySkills(
+                  skills: controller.skills,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddKeySkills())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                Education(
+                  education: controller.educationDetails,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddEducation())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                Experience(
+                  experience: controller.experience,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddExperience())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                Projects(
+                  projects: controller.projects,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddProjects())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
                 PersonalInfo(
-                  onTap: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const AddPersonalDetails(
-                  ))),                ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              const PersonalLinks(),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-               Languages(
-                 onTap:() => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => AddLanguages(languages: widget.languages,))),
-                languages: widget.languages,
-              ),
-            ],
+                  gender: controller.selectedGender.value,
+                  cAddress: controller.localAddress.value,
+                  category: controller.category.value,
+                  pinCode: controller.pinCode.value,
+                  differentlyAbled: controller.differentlyAbled.value,
+                  dob: controller.dob.value,
+                  mStatus: controller.selectedMaritalStatus.value,
+                  pAddress: controller.permanentAddress.value,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const AddPersonalDetails())),
+                ),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                 PersonalLinks(),
+                SizedBox(
+                  height: Sizes.responsiveMd(context),
+                ),
+                Languages(
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AddLanguages())),
+                  languages: controller.languages,
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    print('Languages ARE:${widget.languages}');
-    print(widget.skills);
-    print(widget.educationDetails);
   }
 }

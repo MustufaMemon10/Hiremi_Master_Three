@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/RoundedContainer/roundedContainer.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Projects/AddProjects.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
 import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
-
 class Projects extends StatelessWidget {
-  const Projects({super.key, this.onTap,
+  const Projects({
+    super.key,
+    this.onTap,
+    this.projects,
   });
 
   final void Function()? onTap;
+  final List<Map<String, String>>? projects;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
@@ -20,30 +23,20 @@ class Projects extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: Sizes.responsiveMd(context)),
-
+          if (projects!.isNotEmpty)
+            SizedBox(height: Sizes.responsiveMd(context)),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const ProjectsChild(
-                title: 'Responsive Personal Portfolio Website',
-                duration: 'Aug 2023 - Sept 2023',
-                description:
-                    'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
-                link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
-              ),
-              SizedBox(
-                height: Sizes.responsiveDefaultSpace(context),
-              ),
-              const ProjectsChild(
-                title: 'Animated Personal Portfolio Website',
-                duration: 'Aug 2023 - Sept 2023',
-                description:
-                    'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
-                link: 'https://github.com/hyperdgx/Toggle-Dark-Light-Mode',
-              ),
-            ],
-          ),
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: projects!
+                  .map((project) => ProjectsChild(
+                        title: project['ProjectTitle']!,
+                        startingDate: project['StartingDate']!,
+                        endingDate: project['CompletedDate']!,
+                        description: project['Description']!,
+                        link: project['ProjectLink']!,
+                        status: project['ProjectStatus']!,
+                      ))
+                  .toList()),
         ],
       ),
     );
@@ -51,14 +44,17 @@ class Projects extends StatelessWidget {
 }
 
 class ProjectsChild extends StatelessWidget {
-  const ProjectsChild({super.key, 
+  const ProjectsChild({
+    super.key,
     required this.title,
-    required this.duration,
     required this.description,
     required this.link,
+    required this.status,
+    required this.startingDate,
+    required this.endingDate,
   });
 
-  final String title, duration, description, link;
+  final String title, startingDate, endingDate, description, link, status;
 
   @override
   Widget build(BuildContext context) {
@@ -67,23 +63,27 @@ class ProjectsChild extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(fontSize: 9.0,fontWeight: FontWeight.w500,color: Colors.black),
+          style: const TextStyle(
+              fontSize: 9.0, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         SizedBox(
           height: Sizes.responsiveXs(context),
         ),
-        Text(
-          duration,
-          style:  TextStyle(fontSize: 6.0,fontWeight: FontWeight.w500,color: AppColors.secondaryText)
-        ),
+        Text('$startingDate - ${status == 'Completed' ? endingDate : 'Ongoing'}',
+            style: TextStyle(
+                fontSize: 6.0,
+                fontWeight: FontWeight.w500,
+                color: AppColors.secondaryText)),
         SizedBox(
           height: Sizes.responsiveSm(context),
         ),
         Text(
           description,
-          style: const TextStyle(fontSize: 9.0,fontWeight: FontWeight.w500,color: Colors.black),
+          style: const TextStyle(
+              fontSize: 9.0, fontWeight: FontWeight.w500, color: Colors.black),
+          overflow: TextOverflow.ellipsis,
         ),
-         SizedBox(
+        SizedBox(
           height: Sizes.responsiveSm(context),
         ),
         RoundedContainer(
@@ -98,7 +98,7 @@ class ProjectsChild extends StatelessWidget {
                 color: Colors.blue,
                 size: 8,
               ),
-               SizedBox(
+              SizedBox(
                 width: Sizes.responsiveXxs(context),
               ),
               Text(
@@ -120,6 +120,9 @@ class ProjectsChild extends StatelessWidget {
           height: 0.25,
           thickness: 0.25,
           color: AppColors.secondaryText,
+        ),
+        SizedBox(
+          height: Sizes.responsiveDefaultSpace(context),
         ),
       ],
     );

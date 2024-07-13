@@ -5,10 +5,10 @@ import 'package:intl/intl.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
-import '../../screens/Profile_Screen/Profile_Screen.dart';
 import '../../Utils/AppSizes.dart';
 import '../../Utils/colors.dart';
-import '../../screens/Profile_Screen/sections/widgets_mustufa/appbar/AppBar.dart';
+import '../../screens/Profile_Screen/Profile_Screen.dart';
+import '../../screens/Profile_Screen/controller/ProfileController.dart';
 import '../widgets/TextFieldWithTitle.dart';
 
 class AddProjects extends StatefulWidget {
@@ -28,10 +28,12 @@ class _AddProjectsState extends State<AddProjects> {
   String projectStatus = '';
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  final controller = ProfileController.instance;
+
   _selectDate(
-      BuildContext context, {
-        required TextEditingController controller,
-      }) async {
+    BuildContext context, {
+    required TextEditingController controller,
+  }) async {
     DateTime? selectedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -41,11 +43,10 @@ class _AddProjectsState extends State<AddProjects> {
 
     if (selectedDate != null) {
       setState(() {
-        controller.text = DateFormat('dd/MM/yyyy').format(selectedDate);
+        controller.text = DateFormat('MM/yyyy').format(selectedDate);
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class _AddProjectsState extends State<AddProjects> {
       appBar: AppBar(
         title: const Text(
           'Edit Profile',
-          style:  TextStyle(
+          style: TextStyle(
               fontSize: 16.0, fontWeight: FontWeight.w500, color: Colors.black),
         ),
         centerTitle: true,
@@ -80,7 +81,8 @@ class _AddProjectsState extends State<AddProjects> {
               left: Sizes.responsiveDefaultSpace(context)),
           child: Form(
             key: formKey,
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Text(
                 'Projects',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -94,7 +96,8 @@ class _AddProjectsState extends State<AddProjects> {
                       child: TextFieldWithTitle(
                           controller: titleController,
                           title: 'Project Title',
-                          validator: (value)=>SValidator.validateEmptyText('Title', value),
+                          validator: (value) =>
+                              SValidator.validateEmptyText('Title', value),
                           hintText: 'eg: Project Title')),
                   SizedBox(
                     width: Sizes.responsiveMd(context),
@@ -103,7 +106,8 @@ class _AddProjectsState extends State<AddProjects> {
                       child: TextFieldWithTitle(
                           controller: clientController,
                           title: 'Client',
-                          validator: (value)=>SValidator.validateEmptyText('Client', value),
+                          validator: (value) =>
+                              SValidator.validateEmptyText('Client', value),
                           hintText: 'eg: Organisation or Client etc.')),
                 ],
               ),
@@ -113,27 +117,28 @@ class _AddProjectsState extends State<AddProjects> {
               TextFieldWithTitle(
                   controller: projectLinkController,
                   title: 'Add Project Link',
-                  validator: (value)=>SValidator.validateEmptyText('Project Link', value),
+                  validator: (value) =>
+                      SValidator.validateEmptyText('Project Link', value),
                   hintText: 'eg: paste project link here.'),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
               TextFieldWithTitle(
-                  title: 'Starting Date',
-                  hintText: 'DD/MM/YYYY',
-                  spaceBtwTextField: Sizes.responsiveMd(context),
-                  controller: startingDateController,
-                  prefix: Icon(
-                    Icons.calendar_month_sharp,
-                    size: 16,
-                    color: AppColors.secondaryText,
-                  ),
+                title: 'Starting Date',
+                hintText: 'DD/MM/YYYY',
+                spaceBtwTextField: Sizes.responsiveMd(context),
+                controller: startingDateController,
+                prefix: Icon(
+                  Icons.calendar_month_sharp,
+                  size: 16,
+                  color: AppColors.secondaryText,
+                ),
                 readOnly: true,
                 textInputType: const TextInputType.numberWithOptions(),
                 validator: (value) =>
                     SValidator.validateEmptyText('Leaving Date', value),
-                onTap: () => _selectDate(context,
-                    controller: startingDateController),
+                onTap: () =>
+                    _selectDate(context, controller: startingDateController),
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
@@ -146,7 +151,8 @@ class _AddProjectsState extends State<AddProjects> {
                     children: [
                       const Text(
                         'Project Status',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w500),
                       ),
                       Text(
                         '*',
@@ -209,37 +215,37 @@ class _AddProjectsState extends State<AddProjects> {
                 ],
               ),
               TextFieldWithTitle(
-                  title: 'Completion Date, if “Completed” selected above.',
-                  starNeeded: false,
-                  hintText: 'DD/MM/YYYY',
-                  controller: completionDateController,
-                  spaceBtwTextField: Sizes.responsiveMd(context),
-                  prefix: Icon(
-                    Icons.calendar_month_sharp,
-                    size: 16,
-                    color: AppColors.secondaryText,
-                  ),
+                title: 'Completion Date, if “Completed” selected above.',
+                starNeeded: false,
+                hintText: 'DD/MM/YYYY',
+                controller: completionDateController,
+                spaceBtwTextField: Sizes.responsiveMd(context),
+                prefix: Icon(
+                  Icons.calendar_month_sharp,
+                  size: 16,
+                  color: AppColors.secondaryText,
+                ),
                 readOnly: true,
                 textInputType: const TextInputType.numberWithOptions(),
                 validator: (value) =>
-                    SValidator.validateEmptyText('Leaving Date', value),
-                onTap: () => _selectDate(context,
-                    controller: completionDateController),
+                   projectStatus =='No'? SValidator.validateEmptyText('Leaving Date', value): null,
+                onTap: () =>
+                    _selectDate(context, controller: completionDateController),
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
               ),
               TextFieldWithTitle(
-                  title: 'Project Description',
-                  hintText: 'Tell us about your project...',
-                  controller: descriptionController,
-                  spaceBtwTextField: Sizes.responsiveMd(context),
-                  maxLines: 3,
-                validator:  (value) =>
-              SValidator.validateEmptyText('Project Description', value),
+                title: 'Project Description',
+                hintText: 'Tell us about your project...',
+                controller: descriptionController,
+                spaceBtwTextField: Sizes.responsiveMd(context),
+                maxLines: 3,
+                validator: (value) =>
+                    SValidator.validateEmptyText('Project Description', value),
               ),
               SizedBox(
-                height: Sizes.responsiveMd(context)*2,
+                height: Sizes.responsiveMd(context) * 2,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -248,15 +254,26 @@ class _AddProjectsState extends State<AddProjects> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.primary,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                            borderRadius:
+                                BorderRadius.circular(Sizes.radiusSm)),
                         padding: EdgeInsets.symmetric(
                             vertical: Sizes.responsiveHorizontalSpace(context),
                             horizontal: Sizes.responsiveMdSm(context)),
                       ),
                       onPressed: () {
-                        if (formKey.currentState!.validate() && projectStatus.isNotEmpty) {
+                        if (formKey.currentState!.validate() &&
+                            projectStatus.isNotEmpty) {
+                          controller.addProjectsDetail({
+                            'ProjectTitle': titleController.text,
+                            'Client': clientController.text,
+                            'ProjectLink': projectLinkController.text,
+                              'StartingDate': startingDateController.text,
+                            'CompletedDate': completionDateController.text,
+                            'Description': descriptionController.text,
+                              'ProjectStatus': projectStatus,
+                          });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) =>  ProfileScreen(isVerified: false,)));
+                              builder: (ctx) => ProfileScreen()));
                         }
                       },
                       child: const Text(
@@ -269,20 +286,31 @@ class _AddProjectsState extends State<AddProjects> {
                       )),
                   OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        side:   BorderSide(color: AppColors.primary,width: 0.5),
+                        side: BorderSide(color: AppColors.primary, width: 0.5),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(Sizes.radiusSm)),
+                            borderRadius:
+                                BorderRadius.circular(Sizes.radiusSm)),
                         padding: EdgeInsets.symmetric(
                             vertical: Sizes.responsiveSm(context),
                             horizontal: Sizes.responsiveMdSm(context)),
                       ),
                       onPressed: () {
-                        if (formKey.currentState!.validate() && projectStatus.isNotEmpty) {
+                        if (formKey.currentState!.validate() &&
+                            projectStatus.isNotEmpty) {
+                          controller.addProjectsDetail({
+                            'ProjectTitle': titleController.text,
+                            'Client': clientController.text,
+                            'ProjectLink': projectLinkController.text,
+                            'StartingDate': startingDateController.text,
+                            'CompletedDate': completionDateController.text,
+                            'Description': descriptionController.text,
+                            'ProjectStatus': projectStatus,
+                          });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) =>  const AddPersonalDetails()));
+                              builder: (ctx) => const AddPersonalDetails()));
                         }
                       },
-                      child:  Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
@@ -305,7 +333,6 @@ class _AddProjectsState extends State<AddProjects> {
                       )),
                 ],
               )
-
             ]),
           ),
         ),
@@ -313,4 +340,3 @@ class _AddProjectsState extends State<AddProjects> {
     );
   }
 }
-

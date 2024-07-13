@@ -26,7 +26,7 @@ class _NewNavbarState extends State<NewNavbar> {
       HomePage(isVerified: widget.isV),
       const AppliesScreen(),
       const QueriesScreen(),
-      ProfileScreen(isVerified: false,)
+      ProfileScreen()
     ];
   }
 

@@ -24,11 +24,13 @@ class Education extends StatelessWidget {
           SizedBox(height: Sizes.responsiveMd(context)),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: (education ?? [])
+            children: education!
                 .map((edu) => EducationChild(
-                    course: edu['course']!,
-                    place: edu['place']!,
-                    duration: edu['duration']!))
+                    course: edu['educationLevel']!,
+                    place: edu['course']!,
+                    duration: edu['year']!,
+                    marks: edu['marks']!,
+            ))
                 .toList(),
           ),
         ],
@@ -42,10 +44,10 @@ class EducationChild extends StatelessWidget {
     super.key,
     required this.course,
     required this.place,
-    required this.duration,
+    required this.duration, required this.marks,
   });
 
-  final String course, place, duration;
+  final String course, place, duration,marks;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,7 @@ class EducationChild extends StatelessWidget {
           height: Sizes.responsiveXxs(context),
         ),
         Text(
-          duration,
+          '$duration | Percentage: $marks%',
           style: TextStyle(
             fontSize: 7.5,
             fontWeight: FontWeight.w500,

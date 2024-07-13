@@ -7,9 +7,10 @@ import '../../../widgets/CustomContainer/OutlinedButton.dart';
 
 
 class ProfileSummary extends StatelessWidget {
-  const ProfileSummary({super.key, this.onTap,
+  const ProfileSummary({super.key, this.onTap, required this.summary,
   });
 
+  final String summary;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,15 @@ class ProfileSummary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if(summary.isNotEmpty)
           SizedBox(height: Sizes.responsiveMd(context)),
-          const Column(
+           if(summary.isNotEmpty)
+           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  'I’m a fresher and looking for internships, I\'ve a skillset including Web Development from frontend work to backend work, Development from frontend work to backend work.',
-                  style: TextStyle(
+                  summary,
+                  style: const TextStyle(
                     fontSize: 9.0,
                     fontWeight: FontWeight.w500,
                     color: AppColors.black,

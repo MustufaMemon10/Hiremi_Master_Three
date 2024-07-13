@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
+import '../../screens/Profile_Screen/controller/ProfileController.dart';
 
 class AddExperience extends StatefulWidget {
   const AddExperience({super.key});
@@ -19,7 +20,7 @@ class AddExperience extends StatefulWidget {
 
 class _AddExperienceState extends State<AddExperience> {
   String experience = '';
-  String environment = '';
+  String jobType = '';
   String isCurrentCompany = '';
   TextEditingController organizationController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
@@ -28,6 +29,7 @@ class _AddExperienceState extends State<AddExperience> {
   TextEditingController leavingDateController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final controller = ProfileController.instance;
 
   _selectDate(
     BuildContext context, {
@@ -42,9 +44,15 @@ class _AddExperienceState extends State<AddExperience> {
 
     if (selectedDate != null) {
       setState(() {
-        controller.text = DateFormat('dd/MM/yyyy').format(selectedDate);
+        controller.text = DateFormat('MM/yyyy').format(selectedDate);
       });
     }
+  }
+
+  bool isValid() {
+    return experience.isNotEmpty &&
+        jobType.isNotEmpty &&
+        isCurrentCompany.isNotEmpty;
   }
 
   @override
@@ -183,9 +191,9 @@ class _AddExperienceState extends State<AddExperience> {
                             Radio(
                               activeColor: Colors.blue,
                               value: 'Full-time',
-                              groupValue: environment,
+                              groupValue: jobType,
                               onChanged: (value) => setState(() {
-                                environment = 'Full-time';
+                                jobType = 'Full-time';
                               }),
                             ),
                             Text(
@@ -193,7 +201,7 @@ class _AddExperienceState extends State<AddExperience> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 11,
-                                  color: environment == 'Full-time'
+                                  color: jobType == 'Full-time'
                                       ? Colors.black
                                       : AppColors.secondaryText),
                             )
@@ -204,10 +212,10 @@ class _AddExperienceState extends State<AddExperience> {
                             Radio(
                               activeColor: Colors.blue,
                               value: 'Remote',
-                              groupValue: environment,
+                              groupValue: jobType,
                               onChanged: (value) {
                                 setState(() {
-                                  environment = 'Remote';
+                                  jobType = 'Remote';
                                 });
                               },
                             ),
@@ -216,7 +224,7 @@ class _AddExperienceState extends State<AddExperience> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 11,
-                                  color: environment == 'Remote'
+                                  color: jobType == 'Remote'
                                       ? Colors.black
                                       : AppColors.secondaryText),
                             )
@@ -354,9 +362,9 @@ class _AddExperienceState extends State<AddExperience> {
                         color: AppColors.secondaryText,
                       ),
                       readOnly: true,
+                      validator:(value)=>
+                      isCurrentCompany == 'No' ? SValidator.validateEmptyText('Leaving Date', value): null,
                       textInputType: const TextInputType.numberWithOptions(),
-                      validator: (value) =>
-                          SValidator.validateEmptyText('Leaving Date', value),
                       onTap: () => _selectDate(context,
                           controller: leavingDateController),
                     ),
@@ -376,11 +384,20 @@ class _AddExperienceState extends State<AddExperience> {
                                   horizontal: Sizes.responsiveMdSm(context)),
                             ),
                             onPressed: () {
-                              if (formKey.currentState!.validate() && experience.isNotEmpty && environment.isNotEmpty && isCurrentCompany.isNotEmpty) {
+                              if (formKey.currentState!.validate() &&
+                                  isValid()) {
+                                Map<String, String>? experienceDetail = {
+                                  'organization': organizationController.text,
+                                  'jobTitle': jobTitleController.text,
+                                  'jobType': jobType,
+                                  'skillSet': skillSetController.text,
+                                  'joiningDate': joiningDateController.text,
+                                  'leavingDate': leavingDateController.text,
+                                  'isCurrentCompany': isCurrentCompany,
+                                };
+                                controller.addExperienceDetail(experienceDetail);
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) => ProfileScreen(
-                                          isVerified: false,
-                                        )));
+                                    builder: (ctx) => ProfileScreen()));
                               }
                             },
                             child: const Text(
@@ -403,7 +420,18 @@ class _AddExperienceState extends State<AddExperience> {
                                   horizontal: Sizes.responsiveMdSm(context)),
                             ),
                             onPressed: () {
-                              if (formKey.currentState!.validate() && experience.isNotEmpty && environment.isNotEmpty && isCurrentCompany.isNotEmpty) {
+                              if (formKey.currentState!.validate() &&
+                                  isValid()) {
+                                Map<String, String> experienceDetail = {
+                                  'organization': organizationController.text,
+                                  'jobTitle': jobTitleController.text,
+                                  'jobType': jobType,
+                                  'skillSet': skillSetController.text,
+                                  'joiningDate': joiningDateController.text,
+                                  'leavingDate': leavingDateController.text,
+                                  'isCurrentCompany': isCurrentCompany,
+                                };
+                                controller.addExperienceDetail(experienceDetail);
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (ctx) => const AddProjects()));
                               }

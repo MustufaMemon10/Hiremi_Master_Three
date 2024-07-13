@@ -3,6 +3,7 @@ import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
@@ -61,6 +62,7 @@ class _AddEducationState extends State<AddEducation> {
 
   List<String> listOfCourses = [];
 
+  final controller = ProfileController.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +115,8 @@ class _AddEducationState extends State<AddEducation> {
                     SValidator.validateEmptyText('Education', value),
                 onChanged: (newValue) {
                   setState(() {
-                    listOfCourses = educationToCourses[newValue!] ?? [];
+                    educationController.text = newValue!;
+                    listOfCourses = educationToCourses[newValue] ?? [];
                     courseController.clear();
                   });
                 },
@@ -129,6 +132,9 @@ class _AddEducationState extends State<AddEducation> {
                 dropdownItems: listOfCourses,
                 validator: (value) =>
                     SValidator.validateEmptyText('Course', value),
+                onChanged: (value) {
+                  courseController.text = value!;
+                }
               ),
               SizedBox(
                 height: Sizes.responsiveMd(context),
@@ -195,10 +201,14 @@ class _AddEducationState extends State<AddEducation> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
+                          controller.addEducationDetail({
+                            'educationLevel': educationController.text,
+                            'course': courseController.text,
+                            'year': yearController.text,
+                            'marks': marksController.text,
+                          });
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProfileScreen(
-                                    isVerified: false,
-                                  )));
+                              builder: (context) => ProfileScreen()));
                         }
                       },
                       child: const Text(
@@ -221,6 +231,12 @@ class _AddEducationState extends State<AddEducation> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
+                          controller.addEducationDetail({
+                            'educationLevel': educationController.text,
+                            'course': courseController.text,
+                            'year': yearController.text,
+                            'marks': marksController.text,
+                          });
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const AddExperience()));
                         }

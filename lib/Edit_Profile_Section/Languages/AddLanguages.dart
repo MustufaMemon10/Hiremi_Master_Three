@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
@@ -9,39 +11,20 @@ import '../../Utils/validators/validation.dart';
 import '../../screens/Profile_Screen/Profile_Screen.dart';
 
 class AddLanguages extends StatefulWidget {
-   AddLanguages({super.key, required this.languages});
+  const AddLanguages({
+    super.key,
+  });
 
-    List<String>? languages;
   @override
   State<AddLanguages> createState() => _AddLanguagesState();
 }
 
 class _AddLanguagesState extends State<AddLanguages> {
-  TextEditingController languageController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  TextEditingController languageController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    widget.languages ??= [];
-    print('Languages ARE:${widget.languages}');
-
-  }
-
-  void addLanguage() {
-    if (formKey.currentState!.validate()) {
-      setState(() {
-        if (widget.languages!= null) {
-          widget.languages!.add(languageController.text.trim());
-        } else {
-          widget.languages = [languageController.text.trim()];
-        }
-        languageController.clear();
-        print(widget.languages);
-      });
-    }
-  }
+  final controller = ProfileController.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -70,101 +53,109 @@ class _AddLanguagesState extends State<AddLanguages> {
           child: DrawerChild(),
         ),
         body: SingleChildScrollView(
-            child: Padding(
-          padding: EdgeInsets.only(
-              top: Sizes.responsiveXl(context),
-              right: Sizes.responsiveDefaultSpace(context),
-              bottom: kToolbarHeight,
-              left: Sizes.responsiveDefaultSpace(context)),
-          child: Form(
-            key: formKey,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Text(
-                'Languages',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
-              TextFieldWithTitle(
-                  controller: languageController,
-                  title: 'Add Language',
-                  validator: (value) =>
-                      SValidator.validateEmptyText('Language', value),
-                  suffix: GestureDetector(
-                    onTap: addLanguage,
-                    child: Icon(
-                      Icons.add,
-                      size: 20,
-                      color: AppColors.secondaryText,
+          child: Padding(
+            padding: EdgeInsets.only(
+                top: Sizes.responsiveXl(context),
+                right: Sizes.responsiveDefaultSpace(context),
+                bottom: kToolbarHeight,
+                left: Sizes.responsiveDefaultSpace(context)),
+            child: Form(
+              key: formKey,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Languages',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                     ),
-                  ),
-                  hintText: 'eg: Hindi, English etc.'),
-                  SizedBox(
-                    height: Sizes.responsiveXs(context),
-                  ),
-              if(widget.languages!= null && widget.languages!.isNotEmpty)
-              Wrap(
-                spacing: 8.0,
-                children:  widget.languages!.map((language) {
-                  return Chip(
-                    shape: RoundedRectangleBorder(
-                        side: BorderSide(width: 0.37, color: AppColors.primary),
-                        borderRadius: BorderRadius.circular(50)),
-                    backgroundColor: AppColors.white,
-                    deleteIconColor: AppColors.primary,
-                    label: Text(language),
-                    labelStyle: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.black),
-                    onDeleted: () {
-                      setState(() {
-                        widget.languages!.remove(language);
-                      });
-                    },
-                  );
-                }).toList(),
-              ),
-              SizedBox(
-                height: Sizes.responsiveMd(context) * 2,
-              ),
-              Center(
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(Sizes.radiusSm)),
-                      padding: EdgeInsets.symmetric(
-                          vertical: Sizes.responsiveHorizontalSpace(context),
-                          horizontal: Sizes.responsiveMdSm(context)),
+                    SizedBox(
+                      height: Sizes.responsiveMd(context),
                     ),
-                    onPressed: () {
-                      if (formKey.currentState!.validate() ||
-                          widget.languages!.isEmpty) {
-                        return;
-                      }
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (ctx) => ProfileScreen(
-                              isVerified: true,
-                              languages: widget.languages,
-                            ),
+                    TextFieldWithTitle(
+                        controller: languageController,
+                        title: 'Add Language',
+                        validator: (value) =>
+                            SValidator.validateEmptyText('Language', value),
+                        suffix: GestureDetector(
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              controller.addLanguage(languageController.text);
+                              languageController.clear();
+                            }
+                          },
+                          child: Icon(
+                            Icons.add,
+                            size: 20,
+                            color: AppColors.secondaryText,
                           ),
-                        );
-                    },
-                    child: const Text(
-                      'Save',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.white,
+                        ),
+                        hintText: 'eg: Hindi, English etc.'),
+                    SizedBox(
+                      height: Sizes.responsiveXs(context),
+                    ),
+                    if (controller.languages.isNotEmpty)
+                      Obx(
+                        () => Wrap(
+                          spacing: 8.0,
+                          children: controller.languages.map((language) {
+                            return Chip(
+                              shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      width: 0.37, color: AppColors.primary),
+                                  borderRadius: BorderRadius.circular(50)),
+                              backgroundColor: AppColors.white,
+                              deleteIconColor: AppColors.primary,
+                              label: Text(language),
+                              labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.black),
+                              onDeleted: () {
+                                controller.removeLanguage(language);
+                              },
+                            );
+                          }).toList(),
+                        ),
                       ),
-                    )),
-              ),
-            ]),
+                    SizedBox(
+                      height: Sizes.responsiveMd(context) * 2,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.primary,
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(Sizes.radiusSm)),
+                            padding: EdgeInsets.symmetric(
+                                vertical:
+                                    Sizes.responsiveHorizontalSpace(context),
+                                horizontal: Sizes.responsiveMdSm(context)),
+                          ),
+                          onPressed: () {
+                            if (formKey.currentState!.validate() ||
+                                controller.languages.isEmpty) {
+                              return;
+                            }
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (ctx) => ProfileScreen(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Save',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.white,
+                            ),
+                          )),
+                    ),
+                  ]),
+            ),
           ),
-        )));
+        ));
   }
 }

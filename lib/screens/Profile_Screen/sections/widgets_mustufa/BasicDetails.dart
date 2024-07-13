@@ -6,23 +6,40 @@ import 'package:hiremi_version_two/screens/widgets/CustomContainer/OutlinedButto
 
 
 class BasicDetails extends StatelessWidget {
-  const BasicDetails({super.key,
+  const BasicDetails({super.key, required this.lookingFor, required this.city, required this.state, required this.email, required this.phoneNumber, required this.whatsappNumber, required this.onTap,
   });
 
+  final String lookingFor;
+  final String city;
+  final String state;
+  final String email;
+  final String phoneNumber;
+  final String whatsappNumber;
+  final void Function() onTap;
+
+  isValid(){
+    return
+      lookingFor.isNotEmpty &&
+          city.isNotEmpty &&
+          state.isNotEmpty &&
+          email.isNotEmpty &&
+          phoneNumber.isNotEmpty &&
+          whatsappNumber.isNotEmpty;
+  }
   @override
   Widget build(BuildContext context) {
     return OutlinedContainer(
-      onTap: () =>
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>  const AddBasicDetails())),
+      onTap: onTap,
       title: 'Basic Details',
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        if(isValid())
+        SizedBox(
+          height: Sizes.responsiveMd(context),
+        ),
+          if(isValid())
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: Sizes.responsiveMd(context),
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -40,7 +57,7 @@ class BasicDetails extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         color: AppColors.black,
                       )),
-                  Text('Internships',
+                  Text(lookingFor,
                       style: TextStyle(
                         fontSize: 10.0,
                         fontWeight: FontWeight.w600,
@@ -51,23 +68,23 @@ class BasicDetails extends StatelessWidget {
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              const BasicDetailsChild(
+               BasicDetailsChild(
                 icon: Icons.add_location_alt,
-                title: 'Bhopal, Madhya Pradesh, India',
+                title: '$city, $state ',
               ),
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              const BasicDetailsChild(icon: Icons.mail_outline, title: 'admin@gmail.com'),
+               BasicDetailsChild(icon: Icons.mail_outline, title: email),
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              const BasicDetailsChild(icon: Icons.call_outlined, title: '+9988774562'),
+               BasicDetailsChild(icon: Icons.call_outlined, title: '+91$phoneNumber'),
               SizedBox(
                 height: Sizes.responsiveSm(context),
               ),
-              const BasicDetailsChild(
-                  icon: Icons.message_outlined, title: '+9988774562'),
+               BasicDetailsChild(
+                  icon: Icons.message_outlined, title: '+91$whatsappNumber'),
             ],
           )
       ]),

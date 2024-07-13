@@ -6,17 +6,15 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/widgets/CustomContainer/OutlinedButton.dart';
 
-class PersonalLinks extends StatefulWidget {
-  const PersonalLinks({
+class PersonalLinks extends StatelessWidget {
+   PersonalLinks({
     super.key,
   });
 
-  @override
-  State<PersonalLinks> createState() => _PersonalLinksState();
-}
+  TextEditingController linkTitle = TextEditingController();
 
-class _PersonalLinksState extends State<PersonalLinks> {
   TextEditingController personalLinks = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +28,7 @@ class _PersonalLinksState extends State<PersonalLinks> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               const PersonalLinksChild(
                 platform: 'LinkedIn',
                 link: 'https://www.linkedin.com/in/1harshpawar/',
@@ -190,85 +189,115 @@ class PersonalLinksChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          flex: 2,
-          child: RoundedContainer(
-              color: link.isNotEmpty ? AppColors.green : Colors.transparent,
-              border: Border.all(width: 0.5, color: AppColors.secondaryText),
-              radius: 2,
-              padding: EdgeInsets.only(
-                  left: Sizes.responsiveSm(context) * 1.15,
-                  top: Sizes.responsiveSm(context) * 0.9,
-                  bottom: Sizes.responsiveSm(context) * 0.9),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.add_link,
-                      size: 9,
-                      color: link.isNotEmpty
-                          ? AppColors.white
-                          : Colors.black.withOpacity(.75)),
-                  SizedBox(
-                    width: Sizes.responsiveHorizontalSpace(context),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(right: Sizes.responsiveSm(context)),
-                    child: Text(platform.isNotEmpty ? platform : 'Link Title',
-                        style: TextStyle(
-                          fontSize: 8,
-                          fontWeight: FontWeight.w500,
-                          color: link.isNotEmpty
-                              ? AppColors.white
-                              : Colors.black.withOpacity(0.25),
-                        )),
-                  ),
-                ],
-              )),
-        ),
+        LinkTitleChild(link: link, platform: platform),
         SizedBox(
           width: Sizes.responsiveSm(context),
         ),
-        Expanded(
-          flex: 7,
-          child: RoundedContainer(
-              border: Border.all(
-                  width: 0.5,
-                  color: link.isNotEmpty
-                      ? AppColors.green
-                      : AppColors.secondaryText),
-              radius: 2,
-              padding: EdgeInsets.only(
-                  left: Sizes.responsiveSm(context) * 1.15,
-                  top: Sizes.responsiveSm(context) * 0.9,
-                  bottom: Sizes.responsiveSm(context) * 0.9),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Transform.rotate(
-                      angle: pi * 1.5,
-                      child: Icon(
-                        Icons.add_link,
-                        size: 9.5,
-                        color: link.isNotEmpty
-                            ? Colors.blue
-                            : Colors.black.withOpacity(.75),
-                        weight: 1.4,
-                      )),
-                  SizedBox(
-                    width: Sizes.responsiveHorizontalSpace(context),
-                  ),
-                  Text(link.isNotEmpty ? link : 'Paste Link',
-                      style: TextStyle(
-                          fontSize: 8.0,
-                          fontWeight: FontWeight.w500,
-                          color: link.isNotEmpty
-                              ? Colors.blue
-                              : Colors.black.withOpacity(0.25))),
-                ],
-              )),
-        )
+        MainLink(link: link)
       ],
+    );
+  }
+}
+
+class MainLink extends StatelessWidget {
+  const MainLink({
+    super.key,
+    required this.link,
+  });
+
+  final String link;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 7,
+      child: RoundedContainer(
+          border: Border.all(
+              width: 0.5,
+              color: link.isNotEmpty
+                  ? AppColors.green
+                  : AppColors.secondaryText),
+          radius: 2,
+          padding: EdgeInsets.only(
+              left: Sizes.responsiveSm(context) * 1.15,
+              top: Sizes.responsiveSm(context) * 0.9,
+              bottom: Sizes.responsiveSm(context) * 0.9),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Transform.rotate(
+                  angle: pi * 1.5,
+                  child: Icon(
+                    Icons.add_link,
+                    size: 9.5,
+                    color: link.isNotEmpty
+                        ? Colors.blue
+                        : Colors.black.withOpacity(.75),
+                    weight: 1.4,
+                  )),
+              SizedBox(
+                width: Sizes.responsiveHorizontalSpace(context),
+              ),
+              Text(link.isNotEmpty ? link : 'Paste Link',
+                  style: TextStyle(
+                      fontSize: 8.0,
+                      fontWeight: FontWeight.w500,
+                      color: link.isNotEmpty
+                          ? Colors.blue
+                          : Colors.black.withOpacity(0.25))),
+            ],
+          )),
+    );
+  }
+}
+
+class LinkTitleChild extends StatelessWidget {
+  const LinkTitleChild({
+    super.key,
+    required this.link,
+    required this.platform,
+  });
+
+  final String link;
+  final String platform;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: RoundedContainer(
+          color: link.isNotEmpty ? AppColors.green : Colors.transparent,
+          border: Border.all(width: 0.5, color: AppColors.secondaryText),
+          radius: 2,
+          padding: EdgeInsets.only(
+              left: Sizes.responsiveSm(context) * 1.15,
+              top: Sizes.responsiveSm(context) * 0.9,
+              bottom: Sizes.responsiveSm(context) * 0.9),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(Icons.add_link,
+                  size: 9,
+                  color: link.isNotEmpty
+                      ? AppColors.white
+                      : Colors.black.withOpacity(.75)),
+              SizedBox(
+                width: Sizes.responsiveHorizontalSpace(context),
+              ),
+              Padding(
+                padding:
+                    EdgeInsets.only(right: Sizes.responsiveSm(context)),
+                child: Text(platform.isNotEmpty ? platform : 'Link Title',
+                    style: TextStyle(
+                      fontSize: 8,
+                      fontWeight: FontWeight.w500,
+                      color: link.isNotEmpty
+                          ? AppColors.white
+                          : Colors.black.withOpacity(0.25),
+                    )),
+              ),
+            ],
+          )),
     );
   }
 }

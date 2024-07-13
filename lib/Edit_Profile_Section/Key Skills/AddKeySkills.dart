@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Education/AddEducation.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
 import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
@@ -21,16 +23,9 @@ class AddKeySkills extends StatefulWidget {
 class _AddKeySkillsState extends State<AddKeySkills> {
   final skillController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  List<String> keySkills = [];
 
-  void addSkill() {
-    if (skillController.text.isNotEmpty) {
-      setState(() {
-        keySkills.add(skillController.text);
-        skillController.clear();
-      });
-    }
-  }
+  final controller = Get.put(ProfileController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +72,12 @@ class _AddKeySkillsState extends State<AddKeySkills> {
               title: 'Key Skills',
               hintText: 'Eg: Flutter Developer',
               suffix: GestureDetector(
-                onTap: addSkill,
+                onTap: (){
+                  if (formKey.currentState!.validate()) {
+                    controller.addSkill(skillController.text);
+                    skillController.clear();
+                  }
+                },
                 child: Icon(
                   Icons.add,
                   size: 20,
@@ -90,27 +90,29 @@ class _AddKeySkillsState extends State<AddKeySkills> {
             SizedBox(
               height: Sizes.responsiveXs(context),
             ),
-            Wrap(
-              spacing: 8.0,
-              children: keySkills.map((skill) {
-                return Chip(
-                  shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 0.37, color: AppColors.primary),
-                      borderRadius: BorderRadius.circular(50)),
-                  backgroundColor: AppColors.white,
-                  deleteIconColor: AppColors.primary,
-                  label: Text(skill),
-                  labelStyle: const TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.black),
-                  onDeleted: () {
-                    setState(() {
-                      keySkills.remove(skill);
-                    });
-                  },
-                );
-              }).toList(),
+            Obx(
+              ()=> Wrap(
+                spacing: 8.0,
+                children: controller.skills.map((skill) {
+                  return Chip(
+                    shape: RoundedRectangleBorder(
+                        side: BorderSide(width: 0.37, color: AppColors.primary),
+                        borderRadius: BorderRadius.circular(50)),
+                    backgroundColor: AppColors.white,
+                    deleteIconColor: AppColors.primary,
+                    label: Text(skill),
+                    labelStyle: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black),
+                    onDeleted: () {
+                      setState(() {
+                        controller.removeSkill(skill);
+                      });
+                    },
+                  );
+                }).toList(),
+              ),
             ),
             SizedBox(
               height: Sizes.responsiveMd(context),
@@ -128,12 +130,12 @@ class _AddKeySkillsState extends State<AddKeySkills> {
                           horizontal: Sizes.responsiveMdSm(context)),
                     ),
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ProfileScreen(
-                                  isVerified: false,
-                                )));
+                      if (formKey.currentState!.validate() ||
+                          controller.skills.isEmpty) {
+                        return;
                       }
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>  ProfileScreen()));
                     },
                     child: const Text(
                       'Save',
@@ -153,8 +155,8 @@ class _AddKeySkillsState extends State<AddKeySkills> {
                           horizontal: Sizes.responsiveMdSm(context)),
                     ),
                     onPressed: () {
-                      if (!formKey.currentState!.validate() ||
-                          keySkills.isNotEmpty) {
+                      if (formKey.currentState!.validate() ||
+                          controller.skills.isEmpty) {
                         return;
                       }
                       Navigator.of(context).push(MaterialPageRoute(

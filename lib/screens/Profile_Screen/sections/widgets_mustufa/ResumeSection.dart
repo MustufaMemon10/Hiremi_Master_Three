@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 
-
 class ResumeSection extends StatelessWidget {
-   ResumeSection({super.key, 
-  });
-   final controller = TextEditingController();
+  ResumeSection({super.key, required this.resumeLink,});
+
+  final TextEditingController resumeLink;
+
+  String link =
+      'https://drive.google.com/file/d/0B1HXnM1lBuoqMzVhZjcwNTAtZWI5OS00ZDg3LWEyM...';
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding:
-        EdgeInsets.all(Sizes.responsiveDefaultSpace(context)),
+        padding: EdgeInsets.all(Sizes.responsiveDefaultSpace(context)),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(Sizes.radiusSm),
-            border: Border.all(
-                width: 0.5, color: AppColors.secondaryText)),
+            border: Border.all(width: 0.5, color: AppColors.secondaryText)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,8 +38,7 @@ class ResumeSection extends StatelessWidget {
                         Text(
                           'Resume Url',
                           style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16),
+                              fontWeight: FontWeight.w500, fontSize: 16),
                         ),
                         Text(
                           '(Google Drive Link)',
@@ -53,8 +53,7 @@ class ResumeSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width:
-                          MediaQuery.of(context).size.width * 0.5,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           child: RichText(
                             text: TextSpan(
                               children: [
@@ -68,7 +67,7 @@ class ResumeSection extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text:
-                                  'Try to upload pdf in your google drive if possible, ',
+                                      'Try to upload pdf in your google drive if possible, ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 8,
@@ -102,28 +101,28 @@ class ResumeSection extends StatelessWidget {
             SizedBox(
               height: Sizes.responsiveLg(context),
               child: TextField(
-                controller: controller,
+                controller: resumeLink,
                 cursorColor: AppColors.black,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                     fontSize: 8.5,
                     fontWeight: FontWeight.w400,
-                    color: Colors.blue
-                ),
+                    color: Colors.blue),
                 expands: false,
                 cursorHeight: Sizes.responsiveMdSm(context),
                 cursorWidth: Sizes.responsiveXxs(context) * 0.6,
-                decoration:  InputDecoration(
+                decoration: InputDecoration(
                   prefixIcon: const Icon(
                     Icons.attach_file,
                     size: 11,
                   ),
                   hintText: 'Paste Link',
-                  labelStyle:  const TextStyle(
+                  labelStyle: const TextStyle(
                     fontSize: 8.5,
                     fontWeight: FontWeight.w400,
                   ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: Sizes.responsiveXs(context)),
+                  contentPadding: EdgeInsets.symmetric(
+                      horizontal: Sizes.responsiveXs(context)),
                   alignLabelWithHint: true,
                   hintStyle: const TextStyle(
                     fontSize: 8.5,
@@ -164,7 +163,9 @@ class ResumeSection extends StatelessWidget {
                         vertical: Sizes.responsiveHorizontalSpace(context),
                         horizontal: Sizes.responsiveMdSm(context)),
                   ),
-                  onPressed: () {},
+                  onPressed: (){
+                    FocusScope.of(context).unfocus();
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
