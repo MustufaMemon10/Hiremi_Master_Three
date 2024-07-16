@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../Custom_Widget/drawer_child.dart';
 import '../../../../../Notofication_screen.dart';
 import '../../../../../Utils/AppSizes.dart';
 import '../../../../../Utils/colors.dart';

@@ -9,8 +9,8 @@ import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
-import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
+import '../../screens/Drawer_Child_Screens/drawer_child.dart';
 
 
 class AddProfileSummary extends StatefulWidget {

@@ -3,10 +3,10 @@ import 'package:hiremi_version_two/Edit_Profile_Section/Personal%20Details/AddPe
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
 import 'package:intl/intl.dart';
 
-import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
 import '../../Utils/AppSizes.dart';
 import '../../Utils/colors.dart';
+import '../../screens/Drawer_Child_Screens/drawer_child.dart';
 import '../../screens/Profile_Screen/Profile_Screen.dart';
 import '../../screens/Profile_Screen/controller/ProfileController.dart';
 import '../widgets/TextFieldWithTitle.dart';

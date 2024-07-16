@@ -9,16 +9,16 @@ import 'package:hiremi_version_two/Custom_Widget/TextFeild.dart';
 import 'package:hiremi_version_two/Verify_ur_Email.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'api_services/base_services.dart';
+import '../../../Apis/api.dart';
 
-class ForgetYourPassword extends StatefulWidget {
-  const ForgetYourPassword({super.key});
+class ForgetPassword extends StatefulWidget {
+  const ForgetPassword({super.key});
 
   @override
-  State<ForgetYourPassword> createState() => ForgetYourPasswordState();
+  State<ForgetPassword> createState() => ForgetPasswordState();
 }
 
-class ForgetYourPasswordState extends State<ForgetYourPassword> {
+class ForgetPasswordState extends State<ForgetPassword> {
   final UserService _userService = UserService();
   final TextEditingController emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -28,6 +28,7 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
     setState(() {
       isLoading = true;
     });
+
     // Replace with your Django API endpoint URL
     var apiUrl = 'http://13.127.81.177:8000/forgot-password/';
 
@@ -45,7 +46,7 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
         );
       } else {
         // Handle other status codes or errors
-        print('Failed to send OTP: ${response.statusCode}');
+        debugPrint('Failed to send OTP: ${response.statusCode}');
         // Show error message to the user
       }
     } catch (e) {
@@ -67,6 +68,7 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -146,7 +148,7 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
                           obscureText: false,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                           //   return 'Please enter your email id';
+                              //   return 'Please enter your email id';
 
                             }
                             return null;
@@ -155,6 +157,9 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.0185,
+                      ),
+                      Container(
+
                       ),
                       RichText(
                         textAlign: TextAlign.center,
@@ -215,6 +220,7 @@ class ForgetYourPasswordState extends State<ForgetYourPassword> {
                   ),
                 ),
               ),
+              const SizedBox(height: 70,)
             ],
           ),
         ),

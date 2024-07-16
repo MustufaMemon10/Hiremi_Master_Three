@@ -2,16 +2,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:hiremi_version_two/Custom_Widget/Circle_row.dart';
-// For BackdropFilter
+
 import 'package:hiremi_version_two/Custom_Widget/OppurtunityCard.dart';
 import 'package:hiremi_version_two/Custom_Widget/Verifiedtrue.dart';
 import 'package:hiremi_version_two/Custom_Widget/banners.dart';
-import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
 import 'package:hiremi_version_two/Custom_Widget/verification_status.dart';
 import 'package:hiremi_version_two/InternshipScreen.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/experienced_jobs.dart';
 import 'package:hiremi_version_two/fresherJobs.dart';
+import 'package:hiremi_version_two/screens/Drawer_Child_Screens/drawer_child.dart';
 
 
 

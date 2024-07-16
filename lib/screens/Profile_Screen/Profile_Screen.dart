@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiremi_version_two/Custom_Widget/drawer_child.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Key%20Skills/AddKeySkills.dart';
 import 'package:hiremi_version_two/Edit_Profile_Section/Personal%20Details/AddPersonalDetails.dart';
@@ -25,6 +24,7 @@ import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustu
 import '../../Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
 import '../../Edit_Profile_Section/Education/AddEducation.dart';
 import '../../Edit_Profile_Section/Languages/AddLanguages.dart';
+import '../Drawer_Child_Screens/drawer_child.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({

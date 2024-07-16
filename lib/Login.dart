@@ -153,7 +153,7 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: const Forget_Your_Password()),
+                            SlidePageRoute(page: const ForgetYourPassword()),
                           );
                         },
                         child: const Text(

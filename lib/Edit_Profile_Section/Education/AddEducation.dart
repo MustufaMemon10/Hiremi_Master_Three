@@ -5,9 +5,9 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
-import '../../Custom_Widget/drawer_child.dart';
 import '../../Notofication_screen.dart';
 import '../../Utils/validators/validation.dart';
+import '../../screens/Drawer_Child_Screens/drawer_child.dart';
 import '../widgets/TextFieldWithTitle.dart';
 
 class AddEducation extends StatefulWidget {

@@ -15,14 +15,6 @@ class NotificationScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(Icons.notifications),
-          ),
-        ],
       ),
       body: Center(
         child: Column(
