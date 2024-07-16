@@ -162,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Languages(
                   onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddLanguages())),
+                      MaterialPageRoute(builder: (context) => const AddLanguages())),
                   languages: controller.languages,
                 ),
               ],

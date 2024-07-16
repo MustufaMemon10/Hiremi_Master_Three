@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
 import 'package:hiremi_version_two/Fresher_Jobs.dart';
 import 'package:hiremi_version_two/InternshipDetailScreen.dart';
+import 'package:hiremi_version_two/Utils/AppSizes.dart';
 
 class OpportunityCard extends StatelessWidget {
   const OpportunityCard({
@@ -33,7 +34,6 @@ class OpportunityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
-      height: MediaQuery.of(context).size.height * 0.219,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -206,7 +206,7 @@ class OpportunityCard extends StatelessWidget {
                     else{
                       Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const InternshipsDetailsScreen()));
                     }
-                    
+
                   }
                 },
                 style: ButtonStyle(
