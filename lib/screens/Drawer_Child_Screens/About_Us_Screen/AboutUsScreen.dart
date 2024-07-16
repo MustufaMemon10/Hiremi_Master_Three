@@ -81,7 +81,7 @@ class _About_UsState extends State<About_Us> {
             ),
             const Text(
               'Hiremi is a platform for career and business growth, offering',
-              style: const TextStyle(
+              style: TextStyle(
                   fontWeight: FontWeight.normal,
                   fontSize: 12.5,
                   color: Colors.grey),

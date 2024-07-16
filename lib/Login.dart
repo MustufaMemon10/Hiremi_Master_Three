@@ -4,8 +4,8 @@ import 'package:hiremi_version_two/Custom_Widget/Elevated_Button.dart';
 import 'package:hiremi_version_two/Custom_Widget/SliderPageRoute.dart';
 import 'package:hiremi_version_two/Custom_Widget/TextFeild.dart';
 import 'package:hiremi_version_two/bottomnavigationbar.dart';
-import 'package:hiremi_version_two/Forget_Your_Password.dart';
 import 'package:hiremi_version_two/Register.dart';
+import 'package:hiremi_version_two/screens/Drawer_Child_Screens/Forget_Password/ForgetPassword.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -153,7 +153,7 @@ class _LogInState extends State<LogIn> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            SlidePageRoute(page: const ForgetYourPassword()),
+                            SlidePageRoute(page: const ForgetPassword()),
                           );
                         },
                         child: const Text(

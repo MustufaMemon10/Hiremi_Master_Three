@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/RoundedContainer/roundedContainer.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Key%20Skills/AddKeySkills.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 

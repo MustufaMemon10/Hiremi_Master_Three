@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Education/AddEducation.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
-import '../../Notofication_screen.dart';
-import '../../screens/Drawer_Child_Screens/drawer_child.dart';
+import '../../../../Notofication_screen.dart';
+import '../../../Drawer_Child_Screens/drawer_child.dart';
+import '../Education/AddEducation.dart';
+import '../widgets/TextFieldWithTitle.dart';
 
 class AddKeySkills extends StatefulWidget {
   const AddKeySkills({

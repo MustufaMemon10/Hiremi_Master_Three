@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/widgets/CustomTextField.dart';
 
-import '../../Utils/AppSizes.dart';
-import '../../Utils/colors.dart';
+import '../../../../Utils/AppSizes.dart';
+import '../../../../Utils/colors.dart';
+import 'CustomTextField.dart';
 
 
 

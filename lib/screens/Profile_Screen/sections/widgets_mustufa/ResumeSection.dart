@@ -112,9 +112,14 @@ class ResumeSection extends StatelessWidget {
                 cursorHeight: Sizes.responsiveMdSm(context),
                 cursorWidth: Sizes.responsiveXxs(context) * 0.6,
                 decoration: InputDecoration(
+                  prefixIconConstraints: const BoxConstraints(
+                    minHeight: 20,
+                    minWidth: 20
+                  ),
                   prefixIcon: const Icon(
                     Icons.attach_file,
-                    size: 11,
+                    color: AppColors.black,
+                    size: 9,
                   ),
                   hintText: 'Paste Link',
                   labelStyle: const TextStyle(

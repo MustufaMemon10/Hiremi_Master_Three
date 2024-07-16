@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
-import '../../Notofication_screen.dart';
-import '../../Utils/validators/validation.dart';
-import '../../screens/Drawer_Child_Screens/drawer_child.dart';
+import '../../../../Notofication_screen.dart';
+import '../../../../Utils/validators/validation.dart';
+import '../../../Drawer_Child_Screens/drawer_child.dart';
+import '../Experience/AddExperience.dart';
 import '../widgets/TextFieldWithTitle.dart';
 
 class AddEducation extends StatefulWidget {

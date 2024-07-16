@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:hiremi_version_two/Custom_Widget/custom_alert_2.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
@@ -7,7 +6,7 @@ import 'package:hiremi_version_two/Utils/colors.dart';
 
 
 class HelpSupport extends StatefulWidget {
-  const HelpSupport({Key? key, }) : super(key: key);
+  const HelpSupport({super.key, });
 
   @override
   State<HelpSupport> createState() => _HelpSupportState();
@@ -44,12 +43,12 @@ class _HelpSupportState extends State<HelpSupport> {
             children: [
               const Center(
                   child: Image(
-                      image: const AssetImage(
+                      image: AssetImage(
                           'images/Contact us-cuate (1).png'))),
               SizedBox(
                 height: screenHeight * 0.02,
               ),
-              Container(
+              SizedBox(
                 height: 160,
                 width: 800,
                 child: Column(

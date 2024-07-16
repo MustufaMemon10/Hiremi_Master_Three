@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
-import 'package:hiremi_version_two/Forget_Your_Password.dart';
 import 'package:hiremi_version_two/Help_Support.dart';
 import 'package:hiremi_version_two/Settings.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/about_us.dart';
+import 'package:hiremi_version_two/screens/Drawer_Child_Screens/Forget_Password/ForgetPassword.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+
+import '../Profile_Screen/Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
 
 class DrawerChild extends StatelessWidget {
   const DrawerChild({super.key});
@@ -135,7 +136,7 @@ class DrawerChild extends StatelessWidget {
             SizedBox(height: screenHeight * 0.005),
             ListTile(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (ctx) => const ForgetYourPassword())),
+                    builder: (ctx) => const ForgetPassword())),
                 leading: Container(
                   height: screenHeight * 0.04,
                   width: screenHeight * 0.04,
@@ -159,7 +160,7 @@ class DrawerChild extends StatelessWidget {
                         WidgetStatePropertyAll(Color(0xFFECF5FF))),
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (ctx) => const ForgetYourPassword()));
+                          builder: (ctx) => const ForgetPassword()));
                     },
                     icon: const Icon(Icons.navigate_next))),
             SizedBox(height: screenHeight * 0.005),

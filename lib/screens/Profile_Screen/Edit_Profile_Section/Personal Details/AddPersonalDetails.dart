@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Languages/AddLanguages.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
 import 'package:intl/intl.dart';
 
-import '../../Notofication_screen.dart';
-import '../../Utils/AppSizes.dart';
-import '../../Utils/colors.dart';
-import '../../screens/Drawer_Child_Screens/drawer_child.dart';
-import '../../screens/Profile_Screen/Profile_Screen.dart';
-import '../../screens/Profile_Screen/controller/ProfileController.dart';
+import '../../../../Notofication_screen.dart';
+import '../../../../Utils/AppSizes.dart';
+import '../../../../Utils/colors.dart';
+import '../../../Drawer_Child_Screens/drawer_child.dart';
+import '../../Profile_Screen.dart';
+import '../../controller/ProfileController.dart';
+import '../Languages/AddLanguages.dart';
+import '../widgets/TextFieldWithTitle.dart';
 
 class AddPersonalDetails extends StatefulWidget {
   const AddPersonalDetails({super.key});
@@ -23,13 +23,13 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
   String selectedGender = '';
   String selectedMaritalStatus = '';
   String differentlyAbled = '';
-  TextEditingController homeController = TextEditingController();
-  TextEditingController pinCodeController = TextEditingController();
-  TextEditingController localAddressController = TextEditingController();
-  TextEditingController permanentAddressController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController nativeLanguage = TextEditingController();
-  TextEditingController categoryController = TextEditingController();
+  final homeController = TextEditingController();
+  final pinCodeController = TextEditingController();
+  final localAddressController = TextEditingController();
+  final permanentAddressController = TextEditingController();
+  final dobController = TextEditingController();
+  final nativeLanguage = TextEditingController();
+  final categoryController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final controller = ProfileController.instance;
@@ -104,8 +104,7 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                 left: Sizes.responsiveDefaultSpace(context)),
             child: Form(
               key: formKey,
-              child: Obx(
-                ()=> Column(
+              child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
@@ -139,69 +138,71 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                           SizedBox(
                             height: Sizes.responsiveXxs(context),
                           ),
-                          Row(children: [
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Male',
-                                  groupValue: controller.selectedGender.value,
-                                  onChanged: (value) =>
-                                    controller.selectedGender.value = value as String
+                          Obx(
+                                ()=> Row(children: [
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Male',
+                                    groupValue: controller.selectedGender.value,
+                                    onChanged: (value) =>
+                                      controller.selectedGender.value = 'Male',
 
-                                ),
-                                Text(
-                                  'Male',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedGender.value == 'Male'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Female',
-                                  groupValue: controller.selectedGender.value,
-                                  onChanged: (value) =>
-                                    controller.selectedGender.value = value as String,
-                                ),
-                                Text(
-                                  'Female',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedGender.value == 'Female'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Other',
-                                  groupValue: controller.selectedGender.value,
-                                  onChanged: (value) =>
-                                    controller.selectedGender.value = value as String,
-                                ),
-                                Text(
-                                  'Other',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedGender.value == 'Other'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                          ]),
+                                  ),
+                                  Text(
+                                    'Male',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedGender.value == 'Male'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Female',
+                                    groupValue: controller.selectedGender.value,
+                                    onChanged: (value) =>
+                                      controller.selectedGender.value ='Female',
+                                  ),
+                                  Text(
+                                    'Female',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedGender.value == 'Female'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Other',
+                                    groupValue: controller.selectedGender.value,
+                                    onChanged: (value) =>
+                                      controller.selectedGender.value = 'Other',
+                                  ),
+                                  Text(
+                                    'Other',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedGender.value == 'Other'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                            ]),
+                          ),
                         ],
                       ),
                       Column(
@@ -215,69 +216,71 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                           SizedBox(
                             height: Sizes.responsiveXxs(context),
                           ),
-                          Row(children: [
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Single / Unmarried',
-                                  groupValue: controller.selectedMaritalStatus.value,
-                                  onChanged: (value) =>
-                                    controller.selectedMaritalStatus.value =  value as String
-                                ),
-                                Text(
-                                  'Single / Unmarried',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedMaritalStatus.value ==
-                                              'Single / Unmarried'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Married',
-                                  groupValue: controller.selectedMaritalStatus.value,
-                                  onChanged: (value) =>
-                                    controller.selectedMaritalStatus.value =  value as String
-                                ),
-                                Text(
-                                  'Married',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedMaritalStatus.value == 'Married'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Radio(
-                                  activeColor: Colors.blue,
-                                  value: 'Other',
-                                  groupValue: controller.selectedMaritalStatus.value,
-                                  onChanged: (value) =>
-                                    controller.selectedMaritalStatus.value =  value as String
-                                ),
-                                Text(
-                                  'Other',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 11,
-                                      color: controller.selectedMaritalStatus.value == 'Other'
-                                          ? Colors.black
-                                          : AppColors.secondaryText),
-                                )
-                              ],
-                            ),
-                          ]),
+                          Obx(
+                                ()=> Row(children: [
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Single / Unmarried',
+                                    groupValue: controller.selectedMaritalStatus.value,
+                                    onChanged: (value) =>
+                                      controller.selectedMaritalStatus.value = 'Single / Unmarried'
+                                  ),
+                                  Text(
+                                    'Single / Unmarried',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedMaritalStatus.value ==
+                                                'Single / Unmarried'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Married',
+                                    groupValue: controller.selectedMaritalStatus.value,
+                                    onChanged: (value) =>
+                                      controller.selectedMaritalStatus.value =  'Married'
+                                  ),
+                                  Text(
+                                    'Married',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedMaritalStatus.value == 'Married'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Radio(
+                                    activeColor: Colors.blue,
+                                    value: 'Other',
+                                    groupValue: controller.selectedMaritalStatus.value,
+                                    onChanged: (value) =>
+                                      controller.selectedMaritalStatus.value = 'Other'
+                                  ),
+                                  Text(
+                                    'Other',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 11,
+                                        color: controller.selectedMaritalStatus.value == 'Other'
+                                            ? Colors.black
+                                            : AppColors.secondaryText),
+                                  )
+                                ],
+                              ),
+                            ]),
+                          ),
                         ],
                       ),
                       Row(
@@ -335,6 +338,7 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                         title: 'Date of Birth (DOB)',
                         hintText: 'DD/MM/YYYY',
                         controller: dobController,
+                        readOnly: true,
                         spaceBtwTextField: Sizes.responsiveMd(context),
                         prefix: Icon(
                           Icons.calendar_month_sharp,
@@ -371,49 +375,51 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Radio(
-                                    activeColor: Colors.blue,
-                                    value: 'Yes',
-                                    groupValue: controller.differentlyAbled.value,
-                                    onChanged: (value) =>
-                                      controller.differentlyAbled.value =  value as String
-                                  ),
-                                  Text(
-                                    'Yes',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                        color: controller.differentlyAbled.value == 'Yes'
-                                            ? Colors.black
-                                            : AppColors.secondaryText),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Radio(
-                                    activeColor: Colors.blue,
-                                    value: 'No',
-                                    groupValue: controller.differentlyAbled.value,
-                                    onChanged: (value) =>
-                                        controller.differentlyAbled.value =  value as String,
-                                  ),
-                                  Text(
-                                    'No',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 11,
-                                        color: differentlyAbled == 'No'
-                                            ? Colors.black
-                                            : AppColors.secondaryText),
-                                  )
-                                ],
-                              ),
-                            ],
+                          Obx(
+                                ()=> Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Radio(
+                                      activeColor: Colors.blue,
+                                      value: 'Yes',
+                                      groupValue: controller.differentlyAbled.value,
+                                      onChanged: (value) =>
+                                        controller.differentlyAbled.value = 'Yes'
+                                    ),
+                                    Text(
+                                      'Yes',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 11,
+                                          color: controller.differentlyAbled.value == 'Yes'
+                                              ? Colors.black
+                                              : AppColors.secondaryText),
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Radio(
+                                      activeColor: Colors.blue,
+                                      value: 'No',
+                                      groupValue: controller.differentlyAbled.value,
+                                      onChanged: (value) =>
+                                          controller.differentlyAbled.value =  'No'
+                                    ),
+                                    Text(
+                                      'No',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 11,
+                                          color: differentlyAbled == 'No'
+                                              ? Colors.black
+                                              : AppColors.secondaryText),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -441,9 +447,6 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                               onPressed: () {
                                 if (formKey.currentState!.validate() && isValid()) {
                                   controller.addPersonalDetails(
-                                    selectedGender,
-                                    selectedMaritalStatus,
-                                    differentlyAbled,
                                     homeController.text,
                                     pinCodeController.text,
                                     permanentAddressController.text,
@@ -475,12 +478,8 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                                     horizontal: Sizes.responsiveMdSm(context)),
                               ),
                               onPressed: () {
-                                if (formKey.currentState!.validate() &&
-                                    isValid()) {
+                                if (formKey.currentState!.validate() && isValid()) {
                                   controller.addPersonalDetails(
-                                      selectedGender,
-                                      selectedMaritalStatus,
-                                      differentlyAbled,
                                       homeController.text,
                                       pinCodeController.text,
                                       permanentAddressController.text,
@@ -488,9 +487,8 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
                                       dobController.text,
                                       categoryController.text
                                   );
-                                  print('saved Suces');
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (ctx) => AddLanguages()));
+                                      builder: (ctx) => const AddLanguages()));
                                 }
                               },
                               child: Row(
@@ -520,6 +518,6 @@ class _AddPersonalDetailsState extends State<AddPersonalDetails> {
               ),
             ),
           ),
-        ));
+        );
   }
 }

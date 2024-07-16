@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Experience/AddExperience.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Key%20Skills/AddKeySkills.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Personal%20Details/AddPersonalDetails.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/ProfileSummary/ProfileSummary.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Projects/AddProjects.dart';
 import 'package:hiremi_version_two/Notofication_screen.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/Edit_Profile_Section/Education/AddEducation.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/Edit_Profile_Section/Languages/AddLanguages.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/Edit_Profile_Section/Personal%20Details/AddPersonalDetails.dart';
+import 'package:hiremi_version_two/screens/Profile_Screen/Edit_Profile_Section/Projects/AddProjects.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/BasicDetails.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Education.dart';
@@ -21,10 +20,11 @@ import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustu
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/Projects.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/sections/widgets_mustufa/ResumeSection.dart';
 
-import '../../Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
-import '../../Edit_Profile_Section/Education/AddEducation.dart';
-import '../../Edit_Profile_Section/Languages/AddLanguages.dart';
 import '../Drawer_Child_Screens/drawer_child.dart';
+import 'Edit_Profile_Section/BasicDetails/AddBasicDetails.dart';
+import 'Edit_Profile_Section/Experience/AddExperience.dart';
+import 'Edit_Profile_Section/Key Skills/AddKeySkills.dart';
+import 'Edit_Profile_Section/ProfileSummary/ProfileSummary.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 import 'package:hiremi_version_two/screens/Profile_Screen/controller/ProfileController.dart';
 
-import '../../Notofication_screen.dart';
-import '../../Utils/AppSizes.dart';
-import '../../Utils/colors.dart';
-import '../../Utils/validators/validation.dart';
-import '../../screens/Drawer_Child_Screens/drawer_child.dart';
-import '../../screens/Profile_Screen/Profile_Screen.dart';
+import '../../../../Notofication_screen.dart';
+import '../../../../Utils/AppSizes.dart';
+import '../../../../Utils/colors.dart';
+import '../../../../Utils/validators/validation.dart';
+import '../../../Drawer_Child_Screens/drawer_child.dart';
+import '../../Profile_Screen.dart';
+import '../widgets/TextFieldWithTitle.dart';
 
 class AddLanguages extends StatefulWidget {
   const AddLanguages({
@@ -94,7 +94,6 @@ class _AddLanguagesState extends State<AddLanguages> {
                     SizedBox(
                       height: Sizes.responsiveXs(context),
                     ),
-                    if (controller.languages.isNotEmpty)
                       Obx(
                         () => Wrap(
                           spacing: 8.0,

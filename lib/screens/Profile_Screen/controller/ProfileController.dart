@@ -35,8 +35,7 @@ class ProfileController extends GetxController {
   var category = ''.obs;
 
   var skills = <String>[].obs;
-  var personalTitleLinks = <String>[].obs;
-  var personalLinks = <String>[].obs;
+  var personalLinks = <Map<String, String>>[].obs;
   var experience = <Map<String, String>>[].obs;
   var projects = <Map<String, String>>[].obs;
   var educationDetails = <Map<String, String>>[].obs;
@@ -77,11 +76,10 @@ class ProfileController extends GetxController {
     educationDetails.add(educationDetail);
   }
 // Method to add an personal  links
-  void addLinkTitle(String titleLink){
-    personalTitleLinks.add(titleLink);
-  }
-  void addLink(String link){
-    personalLinks.add(link);
+  void addPersonalLinks(String titleLink,String link){
+    personalLinks.add({
+      'title': titleLink,'link': link
+    });
   }
 // Method to add an experience detail
   void addExperienceDetail(Map<String, String> experienceDetail) {
@@ -95,14 +93,10 @@ class ProfileController extends GetxController {
 
 
   void addPersonalDetails(
-      String gender, String mStatus, String dAbled, String home, String pin, String lAddress, String pAddress,
-      String dobirth,
-      String cat) {
-    selectedGender.value = gender;
-    selectedMaritalStatus.value = mStatus;
-    differentlyAbled.value = dAbled;
+      String home, String pin, String lAddress, String pAddress, String dobirth, String cat) {
     homeTown.value = home;
-    permanentAddress.value = pin;
+    pinCode.value = pin;
+    permanentAddress.value = pAddress;
     localAddress.value = lAddress;
     dob.value = dobirth;
     category.value = cat;

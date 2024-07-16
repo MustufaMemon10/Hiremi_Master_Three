@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Personal%20Details/AddPersonalDetails.dart';
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
 import 'package:intl/intl.dart';
 
-import '../../Notofication_screen.dart';
-import '../../Utils/AppSizes.dart';
-import '../../Utils/colors.dart';
-import '../../screens/Drawer_Child_Screens/drawer_child.dart';
-import '../../screens/Profile_Screen/Profile_Screen.dart';
-import '../../screens/Profile_Screen/controller/ProfileController.dart';
+import '../../../../Notofication_screen.dart';
+import '../../../../Utils/AppSizes.dart';
+import '../../../../Utils/colors.dart';
+import '../../../Drawer_Child_Screens/drawer_child.dart';
+import '../../Profile_Screen.dart';
+import '../../controller/ProfileController.dart';
+import '../Personal Details/AddPersonalDetails.dart';
 import '../widgets/TextFieldWithTitle.dart';
 
 class AddProjects extends StatefulWidget {

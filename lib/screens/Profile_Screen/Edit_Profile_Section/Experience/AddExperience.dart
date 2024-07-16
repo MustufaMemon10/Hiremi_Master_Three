@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/Projects/AddProjects.dart';
-import 'package:hiremi_version_two/Edit_Profile_Section/widgets/TextFieldWithTitle.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
 import 'package:hiremi_version_two/Utils/colors.dart';
 import 'package:hiremi_version_two/Utils/validators/validation.dart';
@@ -8,8 +6,10 @@ import 'package:hiremi_version_two/screens/Drawer_Child_Screens/drawer_child.dar
 import 'package:hiremi_version_two/screens/Profile_Screen/Profile_Screen.dart';
 import 'package:intl/intl.dart';
 
-import '../../Notofication_screen.dart';
-import '../../screens/Profile_Screen/controller/ProfileController.dart';
+import '../../../../Notofication_screen.dart';
+import '../../controller/ProfileController.dart';
+import '../Projects/AddProjects.dart';
+import '../widgets/TextFieldWithTitle.dart';
 
 class AddExperience extends StatefulWidget {
   const AddExperience({super.key});

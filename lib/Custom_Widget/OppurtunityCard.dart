@@ -3,6 +3,7 @@ import 'package:hiremi_version_two/Custom_Widget/Custom_alert_box.dart';
 import 'package:hiremi_version_two/Fresher_Jobs.dart';
 import 'package:hiremi_version_two/InternshipDetailScreen.dart';
 import 'package:hiremi_version_two/Utils/AppSizes.dart';
+import 'package:hiremi_version_two/Utils/colors.dart';
 
 class OpportunityCard extends StatelessWidget {
   const OpportunityCard({
@@ -76,7 +77,7 @@ class OpportunityCard extends StatelessWidget {
                   Text(
                     company,
                     textAlign: TextAlign.start,
-                    style: const TextStyle(fontSize: 8),
+                    style: const TextStyle(fontSize: 8,fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -94,18 +95,18 @@ class OpportunityCard extends StatelessWidget {
                   const SizedBox(width: 5),
                   Text(
                     location,
-                    style: const TextStyle(fontSize: 8),
+                    style: const TextStyle(fontSize: 8,fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
               const SizedBox(height: 5),
               Row(
                 children: [
-                  const Icon(Icons.currency_rupee, color: Colors.grey, size: 8),
+                  const Icon(Icons.currency_rupee, color: Colors.grey, size: 8,),
                   const SizedBox(width: 5),
                   Text(
                     stipend,
-                    style: const TextStyle(fontSize: 8),
+                    style: const TextStyle(fontSize: 8,fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -113,6 +114,7 @@ class OpportunityCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.03,
@@ -184,44 +186,41 @@ class OpportunityCard extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  if (!isVerified) {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                              contentPadding: EdgeInsets.zero,
-                              backgroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              content: const CustomAlertbox());
-                        });
-                  }
-                  else{
-                    if(type == 'Job'){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const FresherJobsScreen()));
+              SizedBox(
+                height: Sizes.responsiveXxl(context) * 0.9,
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (!isVerified) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                contentPadding: EdgeInsets.zero,
+                                backgroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                content: const CustomAlertbox());
+                          });
+                    } else {
+                      if (type == 'Job') {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => const FresherJobsScreen()));
+                      } else {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => const InternshipsDetailsScreen()));
+                      }
                     }
-                    else{
-                      Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=> const InternshipsDetailsScreen()));
-                    }
-
-                  }
-                },
-                style: ButtonStyle(
-                  foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
-                  backgroundColor:
-                      WidgetStateProperty.all<Color>(const Color(0xFFC1272D)),
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0), // Border radius
-                    ),
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                  child: const Text(
+                    'Apply Now >',
+                    style: TextStyle(fontSize: 10,color: Colors.white),
                   ),
-                ),
-                child: const Text(
-                  'Apply Now >',
-                  style: TextStyle(fontSize: 10),
                 ),
               )
             ],
